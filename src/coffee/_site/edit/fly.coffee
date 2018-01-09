@@ -37,17 +37,24 @@ module.exports = System.import("./_slide").then (slideout)->
                     return
                 if cls of ACTION
                     return ACTION[cls].call input, @
-            ->
+            (input)->
                 @find('.I-edit').click ->
                     b = @previousSibling
                     v = b.dataset.v
+                    input0 = input[0]
                     System.import("./_box/dir").then (mod)=>
                         mod(
                             b.innerText
                             b.dataset.v
-                        ).then (dir, name)->
-                            b.dataset.v = dir
-                            b.innerText = name
+                        ).then (dir, name)=>
+                            if input0.dataset.v == b.dataset.v
+                                input0.dataset.v = dir
+                                input.val(name)
+                            if dir
+                                b.dataset.v = dir
+                                b.innerText = name
+                            else
+                                $(@).closest('.li').remove()
 
         )
         html.find('input.btn').click ->

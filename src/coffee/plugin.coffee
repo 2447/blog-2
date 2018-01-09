@@ -1,4 +1,4 @@
 module.exports = {
-    # timer:require('./plugin/timer/init.coffee')
+    timer:require('./plugin/timer/init.coffee')
 }
 

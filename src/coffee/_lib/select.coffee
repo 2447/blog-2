@@ -14,7 +14,7 @@ dropdown = (html, click, bind)->
         else
             menu = $('<div class=menu/>')
             init = ->
-                bind.call menu
+                bind.call menu, input
                 doc = $ document
                 doc.one(
                     EVENT_CLICK

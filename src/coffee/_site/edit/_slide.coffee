@@ -14,19 +14,22 @@ module.exports = (func)=>
             if is_me
                 return
 
-
-
         ibtn = $(@parentNode).find('.I').removeClass('now').one('click.slide', ->
-            if not $(@).hasClass "I-"+slide.id
-                slide.close()
+            if slide
+                if not $(@).hasClass "I-"+slide.id
+                    slide.close()
             return
         )
+
+
         close = ->
             slide = undefined
             ibtn.unbind 'click.slide'
             btn.removeClass 'now'
             close_btn.fadeIn()
             option.editor.autofocus()
+
+
         func(
             (html)->
                 if html
@@ -38,10 +41,11 @@ module.exports = (func)=>
                             btn.addClass 'now'
                             close_btn.stop().fadeOut()
                             setTimeout =>
+                                if slide
+                                    slide.close()
                                 slide = option.slide
                         close
                     )
                     option.slide.id = ico
-
             option
         )

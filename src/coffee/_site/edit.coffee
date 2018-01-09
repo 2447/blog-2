@@ -331,7 +331,7 @@ module.exports =  (box, md, file)->
             h1.focus()
 
     editor.load_md = (file_, md)->
-        md = md.split("\n")
+        md = (md or '').split("\n")
         title = ""
         while md.length
             title = md.shift().replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '')

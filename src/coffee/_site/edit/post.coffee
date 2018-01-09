@@ -8,10 +8,9 @@ module.exports = System.import("./_slide").then (slideout)->
     slideout (resolve, option)->
         {file, editor} = option
         render = (en, li)->
+
             _ = $.html()
-            _ """<ul class=UL-#{en}>"""
-            if en
-                en = "!/"+en
+            _ """<ul class="UL-#{en}">"""
             if li.length
                 for [title, p] in li
                     p = $.escape en+"/"+p
@@ -25,7 +24,10 @@ module.exports = System.import("./_slide").then (slideout)->
                 li = me.parents('li')
                 filepath = li[0].title
                 if filepath == file
-                    editor.load_md('')
+                    System.import(
+                        "./add.coffee"
+                    ).then (mod)->
+                        mod(option)
                 $.box.confirm(
                     """<h1 class=TC><p><a title="#{filepath}" href="/edit/#{filepath}">#{li.find('h2').html()}</a></p><p>确认删除？</p></h1>"""
                     {
@@ -67,7 +69,7 @@ module.exports = System.import("./_slide").then (slideout)->
                     rel = @rel
                     pos = EN.indexOf(rel)
                     if pos + 1
-                        h = render(rel, li_li[pos])
+                        h = render("!/"+rel, li_li[pos])
                     else
                         _ = $.html()
                         _ "<div>"
@@ -100,8 +102,11 @@ module.exports = System.import("./_slide").then (slideout)->
                                     b.text()
                                     me.data('v')
                                 ).then (dir, name)->
-                                    me.data('v', dir)
-                                    b.text name
+                                    if dir
+                                        me.data('v', dir)
+                                        b.text name
+                                    else
+                                        me.remove()
 
                         h.find('.dir I').click ->
                             p = @parentNode

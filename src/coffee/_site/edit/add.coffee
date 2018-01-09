@@ -10,7 +10,6 @@ module.exports = ({file, editor, h1})->
                 title
                 html
             ).then ->
-                console.log 'add'
                 PP.get(
                     "post/edit//"
                     (file)->
