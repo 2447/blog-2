@@ -22,9 +22,10 @@ module.exports = System.import("./_slide").then (slideout)->
                         _ = $.html()
                         t = """<div class="li v" data-v="!/%en">%cn<i class="I I-%en"></i></div>"""
                         _ t.render({cn:'草稿箱',en:"draft"})
-                        for i in txt.split("\n")
-                            [dir, name] = i.split("\r")
-                            _ """<div class=li><b class="v" data-v="#{$.escape dir}">#{$.escape name}</b><i class="I I-edit IBtn"></i></div>"""
+                        if txt
+                            for i in txt.split("\n")
+                                [dir, name] = i.split("\r")
+                                _ """<div class=li><b class="v" data-v="#{$.escape dir}">#{$.escape name}</b><i class="I I-edit IBtn"></i></div>"""
                         _ t.render({cn:'新建章节',en:"add"})
                         defer.resolve _.html()
                 )

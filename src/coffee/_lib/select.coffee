@@ -31,8 +31,11 @@ dropdown = (html, click, bind)->
                         if $.isArray(r)
                             [v, t] = r
                         else
+                            if typeof(r) == 'string'
+                                t = r
+                            else
+                                t = me.text()
                             v = @dataset.v
-                            t = me.text()
                         input.val t
                         input[0].dataset.v = v
                         doc.unbind(EVENT_CLICK)
