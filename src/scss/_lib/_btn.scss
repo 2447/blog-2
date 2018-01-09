@@ -1,0 +1,107 @@
+a.input, .input {
+    display: block;
+    border: 1px solid #ccc;
+    background: #fcfcfc;
+    line-height: 20px;
+    padding: 24px 18px;
+    font-weight: normal;
+    color: #666;
+    user-select: none;
+}
+
+.input.edit {
+    text-align: center;
+    font-size: 26px;
+    color: $green;
+
+    &:focus {
+        border-color: $yellow;
+        color: $yellow;
+        background: #fff;
+    }
+
+    &:hover {
+        background: #fff;
+        color: darken($green, 10%);
+        border-color: darken($green, 10%);
+    }
+}
+
+.btn, a.btn, input.btn {
+    user-select: none;
+    border-radius: 0;
+    -webkit-appearance: none;
+    cursor: pointer;
+    text-align: center;
+    color: #fff;
+    line-height: 71px;
+    font-size: 24px;
+    font-weight: normal;
+    margin: 37px 0 20px;
+    display: block;
+    width: 100%;
+    outline: 0;
+    border: 0;
+    padding: 0;
+    outline: 0;
+    background: $blue;
+    border-bottom: 3px solid darken($blue, 20%);
+
+    &:focus {
+        background: $yellow;
+        border-bottom-color: darken($yellow, 20%);
+    }
+
+    &:hover {
+        background: darken($blue, 10%);
+        border-bottom-color: darken($blue, 20%);
+    }
+
+    &:active {
+        background: $yellow;
+        box-shadow: inset rgba(0, 0, 0, 0.8) 0 0 7px;
+        border-bottom-color: darken($yellow, 20%);
+    }
+}
+
+.btn.ghost {
+    border: 2px solid $blue;
+    background: transparent;
+    color: $blue;
+    font-weight: 200;
+    box-sizing: border-box;
+
+    &:hover {
+        color: #f40;
+        background: transparent;
+        border-color: #f40;
+    }
+
+    &:active, &:focus {
+        background: $yellow;
+        border-color: $yellow;
+        color: #fff;
+    }
+}
+
+.btn.red, a.btn.red {
+    background: $red;
+    border-bottom: 3px solid darken($red, 20%);
+
+    &:hover {
+        background: darken($red, 10%);
+        border-bottom-color: darken($red, 30%);
+    }
+}
+
+$btn_green: #3a0;
+
+.btn.green, a.btn.green {
+    background: $btn_green;
+    border-bottom: 3px solid darken($btn_green, 20%);
+
+    &:hover {
+        background: darken($btn_green, 10%);
+        border-bottom-color: darken($btn_green, 30%);
+    }
+}

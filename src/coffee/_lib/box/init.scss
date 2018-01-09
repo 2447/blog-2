@@ -1,0 +1,124 @@
+._BoxBg {
+    position: fixed;
+    z-index: 9998;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.7);
+}
+
+._Box {
+    position: absolute;
+    overflow: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10000;
+
+    .box {
+        max-width: 552px;
+        margin: 0 auto;
+        background: #fff;
+
+        .html {
+            padding: 21px 21px 0;
+            margin: 0;
+
+            h1, h2 {
+                margin: 0 0 10px;
+            }
+
+            p {
+                margin-bottom: 10px;
+            }
+
+            ol, ul {
+                padding: 0;
+                list-style-position: inside;
+            }
+
+            ol {
+                list-style-type: upper-roman;
+            }
+        }
+
+        .btn.ok {
+            margin: 18px 0 0;
+        }
+
+        .boxConfirm {
+            padding-top: 18px;
+            overflow: hidden;
+
+            .btn {
+                box-shadow: #000 0 0 1px inset;
+                position: relative;
+                margin: 0;
+                font-weight: normal;
+                text-shadow: 0 0 3px #333;
+                outline: 0;
+                border: 0;
+                box-sizing: border-box;
+
+                &:focus {
+                    box-shadow: #666 0 0 5px inset;
+                }
+
+                &:focus, &:active, &:hover {
+                    color: #fff;
+                }
+
+                transform: skewX(-25deg);
+                box-sizing: content-box;
+
+                span {
+                    transform: skewX(25deg);
+                    display: inline-block;
+                }
+
+                &.ok {
+                    background: #A3DF29;
+                    background: linear-gradient(to bottom, #B8E735, #A3DF29 30%, #80C037);
+                    float: left;
+                    margin-left: -16px;
+                    padding-left: 16px;
+                    padding-right: 8px;
+                    width: 60%;
+
+                    &:hover,
+                    &:focus,
+                    &:active {
+                        background: darken(#A3DF29, 5%);
+                        background: linear-gradient(to bottom, darken(#B8E735, 5%), darken(#A3DF29, 5%) 30%, darken(#80C037, 5%));
+                    }
+                }
+
+                &.cancel {
+                    background: #e45;
+                    color: #fff;
+                    padding-right: 8px;
+                    margin-right: -16px;
+                    float: right;
+                    width: 40%;
+
+                    &:hover,
+                    &:focus,
+                    &:active {
+                        background-color: darken(#e45, 10%);
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 602px) {
+    ._Box {
+        .box {
+            width: 100%;
+            max-width: 100%;
+        }
+    }
+}

@@ -1,0 +1,24 @@
+.ERR {
+    color: #f00;
+}
+
+.P {
+    .ERR {
+        color: #faa;
+        margin-top: 8px;
+    }
+}
+
+.P.OOPS {
+    input {
+        border-color: #d20;
+        outline: #d20;
+        color: #d20;
+
+        &:focus {
+            outline: #f40;
+            border-color: #F40;
+            color: #f40;
+        }
+    }
+}

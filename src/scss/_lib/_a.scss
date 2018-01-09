@@ -1,0 +1,42 @@
+a, a:visited {
+    color: #36a;
+}
+
+a {
+    &:focus {
+        color: $yellow;
+    }
+
+    &:hover {
+        color: #f40;
+    }
+
+    &:active {
+        color: darken($blue, 20%);
+    }
+}
+
+tr {
+    a, a:visited {
+        color: #000;
+        border-bottom: 1px solid #999;
+        display: inline-block;
+        padding-bottom: 3px;
+
+        &:focus {
+            color: $blue;
+            border-bottom-color: $blue;
+        }
+
+        &:hover {
+            border-bottom-color: $yellow;
+            color: $yellow;
+        }
+
+        &:active {
+            color: $yellow;
+            text-shadow: 1px 1px 0px $yellow;
+            border-bottom-color: $yellow;
+        }
+    }
+}

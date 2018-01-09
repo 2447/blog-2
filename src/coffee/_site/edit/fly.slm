@@ -1,0 +1,84 @@
+scss:
+  .slideout-menu{
+    .P{
+        margin:18px 0;
+    }
+    .SELECT .menu{
+      .I-add, .I-draft{
+          font-size: 25px;
+          margin-top: 2px;
+          padding-right: 20px;
+      }
+    }
+    .TAG{
+      margin-top:8px;
+      margin-left:-9px;
+        a{
+          float: left;
+          color: #000;
+          border: 1px solid #000;
+          padding: 2px 6px;
+          margin-left: 9px;
+          margin-top: 10px;
+          font-weight: 200;
+          user-select: none;
+          font-size: 14px;
+          &:hover{
+                color:#f40;
+                border-color:#f40;
+            }
+        }
+    }
+    .btn.ghost{
+      border-width:1px;
+      font-family:Rajdhani,PingFang SC,Microsoft Yahei UI Light,Microsoft YaHei, Noto Sans SC Sliced, sans-serif;
+      font-weight:200;
+      &:hover{
+        border-width:1px;
+      }
+    }
+    footer{
+      position:absolute;
+      bottom:18px;
+      left:18px;
+      right:18px;
+      .btn{
+        margin:0;
+      }
+    }
+    nav{
+        padding:0 18px 18px;
+    }
+  }
+
+
+nav
+  .P
+
+    .SELECT
+        label for="postDir"
+          | 目录章节
+        input#postDir.select placeholder="- 请选择 -"
+  /* .P */
+  /*   .SELECT */
+  /*       label */
+  /*         | 内容来源 */
+  /*       SELECT */
+  /*           option value="1" 原创 */
+  /*           option value="2" 转载 */
+  /* .P */
+  /*   .INPUT */
+  /*       label for="editTag" 文章标签 */
+  /*       input#editTag placeholder="标签以空格分隔" spellcheck="false" autocomplete="off" */
+  /*   .TAG */
+  /*       a href="#" 前端 */
+  /*       a href="#" 后端 */
+  /*       a href="#" ios */
+  /*       a href="#" python */
+  /*       a href="#" node.js */
+  /*       a href="#" 区块链 */
+  /*       a href="#" debug */
+  /*       a href="#" window */
+  /*       a href="#" 置顶 */
+footer
+  input.btn.ghost type="submit" value="发布"

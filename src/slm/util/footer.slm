@@ -1,0 +1,8 @@
+
+footer
+    .bgW
+        p
+            | 本站由
+            a.M03 target="_blank" href="https://8gua.blog"
+                | 八卦博客 · 8GUA.BLOG
+            | 构建

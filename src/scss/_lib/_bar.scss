@@ -1,0 +1,57 @@
+.bar {
+    box-sizing: border-box;
+    user-select: none;
+    padding-left: 18px;
+    background: #fdfdfd;
+    line-height: 64px;
+    font-size: 18px;
+    border-bottom: 1px solid #eee;
+    border-top: 1px solid #eee;
+    font-family: $font100;
+    font-weight: 100;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    .I {
+        cursor: pointer;
+        float: right;
+        border-left: 1px solid #eee;
+        padding: 0;
+        text-align: center;
+        font-weight: normal;
+        font-size: 19px;
+    }
+
+    .aLi {
+        a {
+            color: #999;
+            margin-right: 16px;
+            font-weight: 200;
+            position: relative;
+            padding-bottom: 8px;
+
+            &.now {
+                color: #000;
+
+                &:before {
+                    content: "";
+                    width: 100%;
+                    position: absolute;
+                    border-bottom: 1px dashed #87C560;
+                    transform: scale(0.81);
+                    bottom: 0;
+                }
+
+                &:hover {
+                    &:before {
+                        border-bottom: 1px solid #f40;
+                    }
+                }
+            }
+
+            &:hover {
+                color: #f40;
+            }
+        }
+    }
+}

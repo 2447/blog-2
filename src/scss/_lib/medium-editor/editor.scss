@@ -1,0 +1,149 @@
+.medium-toolbar-arrow-under:after {
+    border-color: #000 transparent transparent transparent;
+    border-color: rgba(0, 0, 0, 0.9) transparent transparent transparent;
+    top: 40px;
+}
+
+.medium-toolbar-arrow-over:before {
+    border-color: transparent transparent #000 transparent;
+    border-color: transparent transparent rgba(0, 0, 0, 0.9) transparent;
+}
+
+.medium-editor-toolbar {
+    background-color: #000;
+    background-color: rgba(0, 0, 0, 0.9);
+    border: none;
+}
+
+.medium-editor-toolbar li button, .medium-editor-toolbar li .medium-editor-action-pre {
+    background-color: transparent;
+    border: none;
+    box-sizing: border-box;
+    color: #ccc;
+    height: 40px;
+    min-width: 40px;
+    line-height: 40px;
+    padding: 0;
+}
+
+.medium-editor-toolbar li button:hover {
+    background-color: #000;
+    color: #Ff0;
+}
+
+.medium-editor-toolbar li .medium-editor-button-first {
+    padding-left: 6px;
+}
+
+.medium-editor-toolbar li .medium-editor-button-last {}
+
+.medium-editor-toolbar li .medium-editor-button-active {
+    color: #fc1;
+
+    &:hover {
+        color: #f40;
+    }
+}
+
+.medium-editor-toolbar-form {
+    background: transparent;
+    border-radius: 0;
+    color: #ccc;
+    overflow: hidden;
+}
+
+.medium-editor-toolbar-form .medium-editor-toolbar-input {
+    background: transparent;
+    float: left;
+    box-sizing: border-box;
+    font-weight: 200;
+    color: #ccc;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 0 0 12px;
+    width: 300px;
+
+    &:focus {
+        color: #fff;
+    }
+}
+
+.medium-editor-toolbar-form .medium-editor-toolbar-input::-webkit-input-placeholder {
+    color: #f8f5f3;
+    color: rgba(248, 245, 243, 0.8);
+}
+
+.medium-editor-toolbar-form .medium-editor-toolbar-input:-moz-placeholder {
+    /* Firefox 18- */
+    color: #f8f5f3;
+    color: rgba(248, 245, 243, 0.8);
+}
+
+.medium-editor-toolbar-form .medium-editor-toolbar-input::-moz-placeholder {
+    /* Firefox 19+ */
+    color: #f8f5f3;
+    color: rgba(248, 245, 243, 0.8);
+}
+
+.medium-editor-toolbar-form .medium-editor-toolbar-input:-ms-input-placeholder {
+    color: #f8f5f3;
+    color: rgba(248, 245, 243, 0.8);
+}
+
+.medium-editor-toolbar-form a {
+    color: #ccc;
+    margin: 0;
+    height: 40px;
+    width: 40px;
+    text-align: center;
+    line-height: 40px;
+
+    &:hover {
+        color: #fff;
+        background: #000;
+        font-weight: bold;
+    }
+}
+
+.medium-editor-toolbar-form .fa {
+    font-size: 24px;
+}
+
+.medium-editor-anchor-preview {
+    font-family: Lato;
+    line-height: 1.8;
+    max-width: 340px;
+}
+
+.medium-editor-toolbar-anchor-preview {
+    background: #000;
+    background: rgba(0, 0, 0, 0.9);
+    padding: 5px 10px 7px;
+}
+
+.medium-editor-anchor-preview a {
+    color: #ccc;
+    text-decoration: none;
+    font-size: 14px;
+    margin: 0;
+
+    &:hover {
+        color: #fff;
+    }
+}
+
+.medium-editor-toolbar li .medium-editor-action-underline {
+    text-decoration: none;
+}
+
+.medium-editor-toolbar li .fa {
+    font-size: 18px;
+}
+
+.medium-editor-toolbar li .fa-header sup {
+    font-weight: normal;
+    font-family: Lato;
+    font-size: 14px;
+    margin-left: -1px;
+    vertical-align: -5px;
+}

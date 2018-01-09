@@ -1,0 +1,29 @@
+#Page footer {
+    background: url(file/pagebg.png) 0 0 / 190px #FAFAFA;
+    font-family: $font100;
+    margin: 0;
+    text-align: center;
+    border-top: 1px dashed #eee;
+    color: #999;
+    font-weight: 100;
+    position: absolute;
+    bottom: 0;
+    box-sizing: border-box;
+    width: 100%;
+
+    a, a:visited {
+        color: #999;
+        padding-bottom: 4px;
+        border-bottom: 1px dotted #ddd;
+
+        &:hover {
+            color: #f40;
+            border-bottom-coloR: #f40;
+        }
+    }
+
+    .bgW {
+        padding: 38px 24px 32px;
+        background: rgba(255, 255, 255, 0.2);
+    }
+}

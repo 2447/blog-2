@@ -1,0 +1,40 @@
+.toast {
+    animation-duration: 0.5s;
+    transition: .5s margin;
+    position: fixed;
+    z-index: 99999;
+    bottom: 18px;
+    margin-left: 18px;
+    color: #fff;
+    text-align: center;
+    padding: 3px 9px;
+    background: rgba(0, 0, 0, 0.7);
+    border-radius: 3px;
+    font-size: 12px;
+    right: 16px;
+
+    &.ERR {
+        background: rgba(255, 60, 60, 0.8);
+        color: #fff;
+        font-weight: normal;
+    }
+
+    .I-close {
+        user-select: none;
+        font-weight: bold;
+        cursor: pointer;
+        font-size: 12px;
+        margin-left: 8px;
+
+        &:hover {
+            color: #0f0;
+        }
+    }
+}
+
+// @media (max-width: 602px) {
+//     .toast {
+//         right: 50%;
+//         transform: translateX(50%);
+//     }
+// }

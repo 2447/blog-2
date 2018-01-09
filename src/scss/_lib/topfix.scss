@@ -1,0 +1,20 @@
+.Topfix {
+    .topfix {
+        animation-duration: .5s;
+        animation-fill-mode: both;
+        z-index: 1;
+        position: fixed !important;
+    }
+
+    &.Topfix1 {
+        .topfix {
+            animation-name: slideInDown;
+        }
+    }
+
+    &.Topfix0 {
+        .topfix {
+            animation-name: slideOutUp;
+        }
+    }
+}

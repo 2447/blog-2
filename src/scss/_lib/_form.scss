@@ -1,0 +1,66 @@
+.OOPS.P {
+    .ERR {
+        color: #f00;
+    }
+}
+
+.Form {
+    .P {
+        margin-bottom: 21px;
+    }
+
+    h1 {
+        font-weight: 100;
+        margin: 0 0 21px;
+
+        .tip {
+            font-size: 16px;
+            margin-left: 8px;
+            display: inline;
+        }
+    }
+
+    .P.txt {
+        font-size: 21px;
+    }
+}
+
+input:disabled {
+    background: #eee;
+    border: 1px solid #ccc;
+
+    &:hover {
+        border: 1px solid #ccc;
+        background: #eee;
+        cursor: normal;
+    }
+}
+
+input, textarea {
+    border: 1px solid #ccc;
+}
+
+input:hover, textarea:hover {
+    border-color: #666;
+    background: #f6fff6;
+}
+
+input:focus, textarea:focus, button:focus {
+    outline: 1px solid #000;
+    border-color: #000;
+    background: #ffe;
+}
+
+input {
+    padding: 20px 18px;
+    font-size: 18px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+button {
+    background: #fff;
+    padding: 24px 18px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}

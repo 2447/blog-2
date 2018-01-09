@@ -1,0 +1,252 @@
+$SELECT_LEFT: 83px;
+
+.sortable-ghost {
+    opacity: .5;
+    background: #ffc;
+}
+
+.SELECT {
+    position: relative;
+
+    .I-loading {
+        display: block;
+        margin: 32px auto;
+        width: 32px;
+        height: 32px;
+    }
+
+    input, input:focus, input:hover, input:active {
+        padding: 18px 18px 18px 83px;
+        border: 0;
+        outline: 0;
+        background: #fff;
+        font-weight: 100;
+        border-bottom: 1px dashed #ddd;
+        text-align: center;
+        cursor: pointer;
+        font-family: I,Lato,Noto Sans SC Sliced, sans-serif;
+        user-select: none;
+    }
+
+    select {
+        font-weight: 200;
+        border: 0;
+        padding: 18px 18px 18px $SELECT_LEFT;
+        border-bottom: 1px dashed #ddd;
+    }
+
+    .menu {
+        z-index: 1;
+        background: #fff;
+        user-select: none;
+        position: absolute;
+        width: 100%;
+        border: 1px solid #ddd;
+        margin-bottom: 32px;
+        margin-top: -1px;
+        cursor: pointer;
+
+        .li {
+            line-height: 64px;
+            height: 64px;
+            border-top: 1px solid #eee;
+            text-align: left;
+            padding: 0 0 0 18px;
+            overflow: hidden;
+            position: relative;
+
+            .I {
+                float: right;
+                margin-top: 1px;
+                font-size: 22px;
+                padding-right: 18px;
+            }
+
+            .IBtn {
+                margin-top: 0;
+                padding: 0;
+                top: 0;
+                right: 0;
+                text-align: center;
+                position: absolute;
+            }
+
+            b {
+                font-weight: 200;
+                display: block;
+                position: absolute;
+                left: 0;
+                float: left;
+                padding-left: 18px;
+                right: 65px;
+            }
+
+            &.v:hover, b:hover {
+                background: #2C61D0;
+                color: #fff;
+            }
+        }
+
+        .li:first-child {
+            border-top: 0;
+        }
+    }
+}
+
+.SELECT, .INPUT {
+    font-size: 18px;
+    font-weight: 200;
+
+    label {
+        user-select: none;
+        position: absolute;
+        line-height: 64px;
+        pointer-events: none;
+    }
+}
+
+.INPUT {
+    input {
+        font-weight: 200;
+        padding: 0 0 2px $SELECT_LEFT;
+        height: 71px;
+        line-height: 64px;
+    }
+
+    input, input:hover, input:active, input:focus {
+        border: 0;
+        outline: 0;
+        border-bottom: 1px dashed #ddd;
+        background: transparent;
+    }
+}
+
+.SELECT:after {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    right: 16px;
+    top: 50%;
+    margin-top: -3px;
+    height: 0;
+    width: 0;
+    border-top: 5px solid #000;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    pointer-events: none;
+}
+
+._submit {
+    position: absolute;
+    left: -99999px;
+    top: -99999px;
+    width: 1px;
+    height: 1px;
+}
+
+// 清除浮动
+.C {
+    *zoom: 1;
+}
+
+.C:before,
+.C:after {
+    content: "";
+    display: table;
+}
+
+.C:after {
+    clear: both;
+}
+
+.VC {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+// VC2 VC1 VC0
+.VC2 {
+    height: 100%;
+    width: 100%;
+    display: table;
+
+    .VC1 {
+        display: table-cell;
+        vertical-align: middle;
+    }
+}
+
+.FC2 {
+    float: left;
+    position: relative;
+    left: 50%;
+
+    .FC1 {
+        position: relative;
+        right: 50%;
+        float: left;
+    }
+}
+
+/* 基本样式 */
+.R {
+    float: right;
+}
+
+.L {
+    float: left;
+}
+
+.I-loading {
+    background: url(file/ing.svg) 50% 50% / 100% no-repeat;
+}
+
+.MR3 {
+    margin-right: 3px;
+}
+
+.MR18 {
+    margin-right: 18px;
+}
+
+.F12 {
+    font-size: 12px;
+}
+
+.ML3 {
+    margin-left: 3px;
+}
+
+.ML7 {
+    margin-left: 7px;
+}
+
+.M03 {
+    margin: 0 3px;
+}
+
+.M07 {
+    margin: 0 7px;
+}
+
+.MR9 {
+    margin-right: 9px;
+}
+
+.MB90 {
+    margin-bottom: 90px;
+}
+
+.TC {
+    text-align: center;
+}
+
+.TR {
+    text-align: right;
+}
+
+.TL {
+    text-align: left;
+}

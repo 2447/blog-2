@@ -1,0 +1,90 @@
+.slideout-menu {
+    position: fixed;
+    right: 0;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 2000;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.6);
+    -webkit-overflow-scrolling: touch;
+
+    .I-close {
+        color: #fff;
+        position: absolute;
+
+        &:hover {
+            color: #fff;
+            font-weight: bold;
+        }
+    }
+}
+
+.slideoutOpen,
+.slideoutOpen body,
+.slideoutOpen body #Page,
+.slideoutOpen .slideout-panel {
+    overflow: hidden;
+}
+
+$slideoutWidth: 500px;
+
+.slideout {
+    top: 0;
+    height: 100%;
+    bottom: 0;
+    background: #fff;
+    width: $slideoutWidth;
+    position: absolute;
+    overflow-y: auto;
+    text-align: center;
+}
+
+.slideoutLeft {
+    .slideout {
+        border-right: 1px solid #666;
+        left: 0;
+    }
+
+    .I-close {
+        right: auto;
+        left: $slideoutWidth + 14;
+    }
+}
+
+.slideoutRight {
+    .slideout {
+        border-left: 1px solid #666;
+        right: 0;
+    }
+
+    .I-close {
+        left: auto;
+        right: $slideoutWidth + 14;
+    }
+}
+
+@media (max-width: 602px) {
+    .slideout {
+        width: 100%;
+    }
+
+    .slideoutRight, .slideoutLeft {
+        .slideout {
+            border: 0;
+        }
+
+        .I-close {
+            z-index: 100;
+            top: 10px;
+            color: #000;
+            right: 10px;
+            left: auto;
+
+            &:hover {
+                color: #f40;
+            }
+        }
+    }
+}

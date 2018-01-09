@@ -1,0 +1,12 @@
+scss:
+  @import "scss/_lib/medium-editor/default.scss";
+  @import "scss/_lib/medium-editor/editor.scss";
+  @import "scss/_lib/medium-editor/table.scss";
+  @import "scss/_lib/medium-editor/ico.scss";
+  @import 'scss/_lib/_edit';
+
+.editor
+  .TOP
+    input.H1(autocomplete="off" spellcheck="false" placeholder="标题" value="")
+  .TXT
+    textarea spellcheck="false"

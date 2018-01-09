@@ -1,0 +1,14 @@
+.IBtn, a.IBtn {
+    font-size: 30px;
+    cursor: pointer;
+    width: 64px;
+    border-left: 1px solid #f5f5f5;
+    line-height: 64px;
+    color: #999;
+
+    &:hover {
+        color: #000;
+        background: rgba(0, 0, 0, 0.01);
+        box-shadow: inset #ddd 0 0 5px;
+    }
+}

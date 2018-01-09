@@ -1,0 +1,7 @@
+._Box
+    scss:
+        @import "coffee/_lib/box/init.scss";
+    .VC2
+        .VC1
+          form.box
+

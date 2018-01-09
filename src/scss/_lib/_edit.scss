@@ -1,0 +1,332 @@
+$bg: #f9f9f9;
+
+.Pbox.EDIT {
+    .toast {
+        margin-right: 46px;
+
+        .ing {
+            color: #cff;
+            user-select: none;
+
+            span {
+                margin-left: 8px;
+            }
+        }
+    }
+}
+
+.medium-box-upload {
+    input {
+        display: none;
+    }
+
+    ol {
+        margin-bottom: 0;
+
+        li {
+            list-style-type: decimal;
+        }
+
+        .size {
+            margin-left: 8px;
+            font-size: 12px;
+            font-weight: 200;
+            color: #999;
+        }
+    }
+
+    label {
+        padding: 32px;
+        text-align: center;
+        display: block;
+        border: 3px dashed #eee;
+        outline: 0;
+        cursor: pointer;
+
+        div, .fa {
+            float: left;
+        }
+
+        .fa {
+            font-size: 24px;
+            margin-right: 15px;
+            line-height: 56px;
+        }
+
+        &:hover {
+            border-color: #ccc;
+
+            .fa {
+                color: #f40;
+            }
+        }
+    }
+}
+
+.medium-insert-active:before {
+    cursor: pointer;
+    user-select: none;
+    position: absolute;
+    margin-top: 0px;
+    margin-left: -35px;
+    border: 1px solid #60A225;
+    color: #60A225;
+    width: 29px;
+    background: #fff;
+    height: 29px;
+    text-align: center;
+    border-radius: 0px;
+    font-style: normal;
+    font-weight: 100;
+    font-size: 22px;
+    line-height: 30px;
+    content: "\E757";
+    font-family: 'I';
+    transition: all .25s ease;
+    text-indent: 1px;
+    transform: rotate(45deg) scale(0.5);
+    z-index: 1;
+
+    &:hover {
+        border-color: #f40;
+        border-style: solid;
+        color: #f40;
+    }
+}
+
+.medium-insert-open {
+    color: transparent;
+    cursor: default;
+}
+
+.medium-insert-active {
+    .medium-insert-bar {
+        margin-top: 1px;
+        position: absolute;
+
+        .fa {
+            cursor: pointer;
+            margin-left: 0;
+            margin-right: 11px;
+
+            &:hover {
+                &:before {
+                    color: #f40;
+                }
+            }
+        }
+
+        .fa:before {
+            color: #60A225;
+            font-size: 32px;
+            line-height: 30px;
+        }
+    }
+}
+
+.medium-insert-open:before {
+    border-color: #000;
+    margin-left: -50px;
+    padding-right: 5px;
+    transform: scale(0.6);
+    padding-left: 5px;
+    height: 42px;
+    line-height: 45px;
+    margin-top: -5px;
+    font-size: 16px;
+    color: #000;
+    background: #fff;
+}
+
+.Pbox.EDIT {
+    .PboxMain {
+        max-width: none;
+    }
+
+    background: $bg;
+
+    & > .PboxIco.I-close {
+        top: 18px;
+        right: 9px;
+    }
+
+    nav.edit {
+        bottom: 10px;
+        right: 0;
+        position: fixed;
+
+        .I {
+            display: block;
+            text-align: center;
+            line-height: 47px;
+            height: 47px;
+            width: 47px;
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        .now {
+            background: #eee;
+
+            &:before {
+                content: "\E757";
+                transform: none;
+                border: 0;
+                line-height: 47px;
+                margin: 0;
+                vertical-align: 3px;
+                font-size: 18px;
+                font-weight: 200;
+                position: static;
+            }
+        }
+    }
+
+    .slideout-menu {
+        right: 47px;
+    }
+}
+
+.Pbox.EDIT {
+    .slideout-menu .PboxIco.I-close {
+        display: none;
+    }
+}
+
+$editR: 47px;
+
+.editor {
+    height: 100%;
+    position: absolute;
+    overflow: auto;
+    padding-right: $editR;
+    margin: 0;
+    width: 100%;
+
+    &, input, textarea, .medium-editor-element {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    input, textarea, .medium-editor-element {
+        background: #fff;
+    }
+
+    .medium-editor-element {
+        padding-bottom: 256px;
+    }
+
+    input.H1 {
+        text-align: center;
+    }
+
+    .TOP {
+        background: linear-gradient(#fff 63px, rgba(255, 255, 255, 0));
+        padding-bottom: 16px;
+        height: 78px;
+        padding: 0;
+        z-index: 1;
+        position: relative;
+        pointer-events: none;
+        margin-bottom: -15px;
+    }
+
+    $inputH: 63px;
+
+    input {
+        border: 0;
+        pointer-events: auto;
+        border-bottom: 1px dashed #eee;
+        outline: 0;
+        height: $inputH;
+        text-overflow: ellipsis;
+        line-height: 62px;
+        display: block;
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    .TXT {
+        background: #fff;
+        box-sizing: border-box;
+        min-height: 100%;
+        min-height: calc(100% - #{$inputH});
+        margin: 0;
+        padding: 0;
+
+        // why 1px see https://stackoverflow.com/a/21836870
+        height: 1px;
+    }
+
+    textarea, .medium-editor-element {
+        border: 0;
+        outline: 0;
+        min-height: 100%;
+        padding-top: 14px;
+    }
+
+    input {
+        padding-left: 40px;
+    }
+
+    .medium-editor-element {
+        & > * {
+            max-width: 800px;
+            margin-right: 22px;
+            display: block;
+            margin-left: 40px;
+        }
+
+        table {
+            margin-left: auto;
+            margin-right: auto;
+            display: table;
+        }
+    }
+}
+
+.Pbox.EDIT.Topfix {
+    .TOP.topfix {
+        left: 0;
+        right: $editR;
+    }
+}
+
+@media (min-width: 925px) {
+    .medium-editor-placeholder:after {
+        max-width: 800px;
+        position: static;
+        display: block;
+        margin: -58px auto 0;
+    }
+
+    .editor {
+        .medium-insert-open:before {
+            padding-left: 12px;
+            padding-right: 12px;
+        }
+
+        .medium-insert-bar {
+            margin-left: 11px;
+        }
+
+        .medium-editor-element {
+            & > * {
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+    }
+}
+
+@media (hover: hover) {
+    nav.edit {
+        .I {
+            &:hover {
+                color: #f40;
+                box-shadow: 0 0 8px rgba(0, 0, 0, 0.3) inset;
+                background: #f6f6f6;
+            }
+        }
+    }
+}

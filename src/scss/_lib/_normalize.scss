@@ -1,0 +1,146 @@
+u {
+    text-decoration: none;
+    border-bottom: 1px solid #000;
+    padding-bottom: 3px;
+}
+
+textarea {
+    resize: none;
+    outline: 0;
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+    outline: 0;
+}
+
+pre {
+    box-sizing: border-box;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-weight: normal;
+    background: #FFFDE9;
+    color: #070;
+    border: 1px dashed #070;
+    padding: 16px;
+}
+
+pre, code {
+    font-family: Ubuntu Mono,monospace;
+}
+
+blockquote {
+    margin: 0;
+    padding: 0 0 0 24px;
+    color: #000;
+    top: 6px;
+    margin-bottom: 30px;
+    margin-top: 3px;
+    position: relative;
+
+    &:before {
+        font-family: Arial;
+        content: '\201C';
+        position: absolute;
+        top: -14px;
+        left: 0px;
+        color: #000;
+        font-size: 30px;
+    }
+
+    &:after {
+        content: '';
+        position: absolute;
+        top: 14px;
+        bottom: 7px;
+        left: 3px;
+        width: 1px;
+        border-right: 1px dashed #000;
+    }
+}
+
+hr {
+    border: 0;
+    outline: 0;
+    border-bottom: 1px dashed #ddd;
+    margin-top: 26px;
+    margin-bottom: 27px;
+}
+
+select {
+    border: 1px solid #ccc;
+    background: #fff;
+    border-radius: 0;
+    padding: 24px 18px;
+    cursor: pointer;
+    font-size: 18px;
+    width: 100%;
+    box-sizing: border-box;
+    outline: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+html, body {
+    font-size: 16px;
+}
+
+html,
+button,
+input,
+optgroup,
+select,
+textarea, h1, h2, h3, h4, h5 {
+    font-weight: 300;
+    font-family: Lato,Noto Sans SC Sliced, sans-serif;
+}
+
+img {
+    max-width: 100%;
+    margin: auto;
+}
+
+h1, h2, h3, h4, h5, .H1 {
+    font-family: Rajdhani,PingFang SC,Microsoft Yahei UI Light,Microsoft YaHei, Noto Sans SC Sliced, sans-serif;
+    font-weight: 200;
+    letter-spacing: 1px;
+}
+
+h1, h2, h3, .H1 {
+    font-weight: 100;
+}
+
+$fontSizeH1: 32px;
+
+.H1, h1 {
+    font-size: $fontSizeH1;
+}
+
+h1 {
+    margin: 28px 0 20px;
+}
+
+h2 {
+    font-size: $fontSizeH1 - 4;
+    margin: 25px 0 17px;
+}
+
+h3 {
+    font-size: $fontSizeH1 - 8;
+    margin: 22px 0 14px;
+}
+
+h4 {
+    font-size: $fontSizeH1 - 12;
+    margin: 19px 0 11px;
+}
+
+input {
+    font-weight: normal;
+}
+
+p {
+    margin: 0 0 12px 0;
+}
