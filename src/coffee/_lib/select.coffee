@@ -15,6 +15,14 @@ dropdown = (html, click, bind)->
             menu = $('<div class=menu/>')
             init = ->
                 bind.call menu
+                doc = $ document
+                doc.one(
+                    EVENT_CLICK
+                    (e)->
+                        if $(e.target).closest('.menu')[0] != menu[0]
+                            menu.remove()
+                        return
+                )
                 menu.find('.v').unbind(EVENT_CLICK).bind(
                     EVENT_CLICK
                     ->
@@ -27,6 +35,7 @@ dropdown = (html, click, bind)->
                             t = me.text()
                         input.val t
                         input[0].dataset.v = v
+                        doc.unbind(EVENT_CLICK)
                         menu.remove()
                 )
             if $.isFunction(html)
