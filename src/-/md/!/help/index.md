@@ -40,9 +40,10 @@
 
 在码云、GITHUB、BITBUCKET都有同步的官网镜像。
 
-1.  码云 [i8gua.gitee.io](https://u8gua.gitee.io)
-2.  GITHUB [u8gua.github.io](https://i8gua.github.io)
+1.  码云 [i8gua.gitee.io](https://i8gua.gitee.io)
+2.  GITHUB [i8gua.github.io](https://i8gua.github.io)
 3.  BITBUCKET [8gua.bitbucket.io](https://8gua.bitbucket.io)
+    
 
 ### 关于
 

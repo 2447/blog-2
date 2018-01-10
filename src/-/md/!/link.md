@@ -18,7 +18,7 @@
 
 *   [iconfont.cn](http://iconfont.cn) : 图标字体
 *   [tabletag.net](http://tabletag.net) : HTML表格生成器
-*   [favicon-generator.org](http://favicon-generator.org) : 站点小图标生成器
+*   [realfavicongenerator.net](https://realfavicongenerator.net) : 站点小图标生成器
 
 ---
 

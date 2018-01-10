@@ -7,7 +7,7 @@ cd $PREFIX/src/cli
 ./dist.sh
 
 
-PAGE=$PREFIX/../8gua.github.io
+PAGE=$PREFIX/../8gua.blog
 
 cd $PAGE
 
@@ -34,6 +34,6 @@ sync() {
 }
 
 sync
-git push g &
-git push b &
+git push github &
+git push bitbucket &
 

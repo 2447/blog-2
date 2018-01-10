@@ -9,13 +9,13 @@ editor_box = (page, action)->
         """<div class="medium-box-upload"><div><label class="C" for="medium-box-upload#{guid}"><div class="FC2"><div class="FC1"><i class="fa fa-#{action}"></i><div>点此上传文件<br>按住SHIFT键可多选</div></label><input id="medium-box-upload#{guid}" type="file" multiple></div></div></div><div class="ol"></div></div>"""
         ok:->
             upload.post(
-                SITE.URL
                 files
-                page
+                SITE.URL
                 (file, url)->
                     console.log file.name, url
+                page
             )
-            false
+            return
     )
     input = box.find('input[type=file]')
     input.change ->
