@@ -359,7 +359,7 @@ module.exports =  (box, md, file)->
             if i.charAt(0) == "#"
                 title = $.trim(md.shift().replace(/^#/g, ''))
             break
-
+        _title title
         h1.val title
         md = md.join('\n')
 
