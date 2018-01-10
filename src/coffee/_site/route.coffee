@@ -14,6 +14,13 @@ $ ->
             $("#Page").css({overflow:'hidden'})
     )
 
+VueRouter.prototype.reload = ->
+    history = @history
+    current = history.current
+    history.updateRoute {matched:[], path:""}
+    @replace current
+    return
+
 
 VueRouter.prototype.ln = (path)->
     pos = path.indexOf(' ')
@@ -26,7 +33,7 @@ VueRouter.prototype.ln = (path)->
         ->
             history.updateRoute(route)
     )
-
+    return
 
 string_dict_default = (s) =>
     s = s.split(' ')
@@ -40,7 +47,14 @@ string_dict_default = (s) =>
         }
 
 
-routes = []
+routes = [
+    # {
+    #     path:"/test"
+    #     component:{
+    #       template: '<div>User {{ $route.params.id }}</div>'
+    #     }
+    # }
+]
 do =>
     load = (file)->
         (resolve, reject)->

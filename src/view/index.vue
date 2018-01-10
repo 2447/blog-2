@@ -86,7 +86,6 @@ SUMMARY = []
 export default {
     get : "md/SUMMARY.md"
     data:(summary)->
-
         count = 0
         li = []
         for line in summary.split("\n")

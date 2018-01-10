@@ -91,7 +91,7 @@ GO.beforeEach (to, from, next)=>
                 history.pushState(null, null, path)
 
         box.on 'rm', ->
-            GO.push GO.currentRoute
+            GO.reload()
             return
 
         r = func.call(box, suffix)
