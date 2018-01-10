@@ -331,12 +331,11 @@ module.exports =  (box, md, file)->
     _title = (val)->
         $.doc_title '编辑 · '+($.trim(val) or '无标题')
 
-    _title(
-        h1.change(->
-            _title @value
-            save()
-        ).val()
+    h1.change(->
+        _title @value
+        save()
     )
+
     editor.focus = ->
         editor.elements[0].focus()
         return
@@ -353,11 +352,15 @@ module.exports =  (box, md, file)->
         md = (md or '').split("\n")
         title = ""
         while md.length
-            title = md.shift().replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '')
-            if title
-                title = $.trim(title.replace(/^#/g, ''))
-                if title
-                    break
+            i = md[0]
+            if i.charAt(0) == "#"
+                title = $.trim(md.shift().replace(/^#/g, ''))
+                break
+            else if not $.trim(i)
+                md.shift()
+            else
+                break
+
         h1.val title
         md = md.join('\n')
 
