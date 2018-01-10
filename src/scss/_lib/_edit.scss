@@ -282,6 +282,16 @@ $editR: 47px;
             margin-right: auto;
             display: table;
         }
+
+        img.I-loading {
+            background-size: 25px;
+            width: 190px;
+            height: 90px;
+            margin: 12px auto;
+            user-select: none;
+            border: 1px solid #ccc;
+            padding: 1px;
+        }
     }
 }
 

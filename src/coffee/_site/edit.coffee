@@ -1,20 +1,38 @@
 upload = require 'coffee/_lib/upload'
 
-editor_box = (page, action)->
-    guid = ++ $.guid
+
+editor_box = (editor, page, action)->
     input = undefined
     files = undefined
+    guid = ++ $.guid
 
     box = $.box.confirm(
-        """<div class="medium-box-upload"><div><label class="C" for="medium-box-upload#{guid}"><div class="FC2"><div class="FC1"><i class="fa fa-#{action}"></i><div>点此上传文件<br>按住SHIFT键可多选</div></label><input id="medium-box-upload#{guid}" type="file" multiple></div></div></div><div class="ol"></div></div>"""
+        """<div class="medium-box-upload"><div><label class="C" for="medium-box-upload#{guid}"><div class="FC2"><div class="FC1"><i class="fa fa-#{action}"></i><div>点此上传文件<br>按住CTRL键可多选</div></label><input id="medium-box-upload#{guid}" type="file" multiple></div></div></div><div class="ol"></div></div>"""
         ok:->
-            upload.post(
-                files
-                SITE.URL
-                (file, url)->
-                    console.log file.name, url
-                page
+            place = editor.find(".medium-insert-active")
+            setTimeout(
+                ->
+                    editor.focus()
+                200
             )
+            up = (pos)->
+                img = $ """<img class="I-loading">"""
+                if pos
+                    place.after img
+                else
+                    place.before img
+                upload.post(
+                    files[pos]
+                    SITE.URL
+                    (file, url)->
+                        place = $ """<p><img src="/#{$.escape url}" alt="#{$.escape file.name}"></p>"""
+                        img.replaceWith place
+                        if (++pos) < files.length
+                            up(pos)
+                        return
+                    page
+                )
+            up(0)
             return
     )
     input = box.find('input[type=file]')
@@ -26,11 +44,6 @@ editor_box = (page, action)->
             _ """<li>#{$.escape i.name}<b class="size">#{upload.size i.size}</b></li>"""
         _ """</ol>"""
         box.find('.ol').html _.html()
-    # require('coffee/_lib/upload')(
-    #     (url)->
-    #         console.log url
-    #     page
-    # )
 
 
 EditorAdd = (page, editor)->
@@ -53,7 +66,7 @@ EditorAdd = (page, editor)->
 
             if el.hasClass 'fa'
                 close(el.parents('.'+cls_open))
-                editor_box(page, target.className.split("-").pop())
+                editor_box(editor, page, target.className.split("-").pop())
                 return
             else if e.offsetX >= 0
                 return
@@ -85,7 +98,12 @@ EditorAdd = (page, editor)->
         if $current[0] == editor[0]
             return
         if not $el.hasClass('medium-editor-placeholder')
-            turn = $p.length and ( !$p.text().trim() )
+            p0 = $p[0]
+            if p0 and p0.innerHTML == '<br>'
+                turn = 1
+            else
+                turn = 0
+
             li = editor.find(cls_active)
             if turn and $p.hasClass cls_active_ and li.length == 1
                 return
@@ -321,6 +339,7 @@ module.exports =  (box, md, file)->
     )
     editor.focus = ->
         editor.elements[0].focus()
+        return
 
     editor.autofocus = ->
         val = $.trim(h1.val())

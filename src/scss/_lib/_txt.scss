@@ -23,10 +23,12 @@
         }
     }
 
-    img {
-        max-width: 100%;
-        margin-left: auto;
-        margin-right: auto;
+    p {
+        & > img {
+            max-width: 100%;
+            margin: 18px auto;
+            display: block;
+        }
     }
 
     h1 {
