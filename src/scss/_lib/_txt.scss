@@ -7,6 +7,10 @@
 
         li {
             list-style: none;
+
+            p:first-child {
+                margin-top: -32px;
+            }
         }
 
         li:before {
@@ -14,6 +18,7 @@
             background: transparent;
             height: 3px;
             width: 3px;
+            margin-left: -5px;
             display: inline-block;
             position: relative;
             left: -18px;
