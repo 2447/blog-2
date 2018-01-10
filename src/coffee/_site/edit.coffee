@@ -329,7 +329,7 @@ module.exports =  (box, md, file)->
     )
     h1 = f('input.H1')
     _title = (val)->
-        $.doc_title '编辑 · '+($.trim(val) or '无标题')
+        $.doc_title '编辑 · '+($.trim(val) or '无题')
 
     h1.change(->
         _title @value
