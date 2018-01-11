@@ -18,8 +18,10 @@ renderMd = (url, prefix)->
 
 MAP = {
     edit : (file)->
+        @option.keyup = ->
         if $(".EDIT.Pbox")[0]
             return
+
         p = PP.json("post/edit/#{file or ''}")
         $.when(
             p
@@ -48,11 +50,12 @@ MAP = {
                 return
         )
     "-":(file)->
-        renderMd.call(
-            @
-            file
-        )
-
+        if file.slice(0,2) != "S/"
+            renderMd.call(
+                @
+                file
+            )
+        return
     help:(file)->
         renderMd.call(
             @

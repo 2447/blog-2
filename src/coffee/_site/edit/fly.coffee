@@ -67,6 +67,6 @@ module.exports = System.import("./_slide").then (slideout)->
                         editor.getContent()
                     ).done (url)->
                         box._rm()
-                        GO.push url
+                        GO.push "-/"+url
             )
         resolve html

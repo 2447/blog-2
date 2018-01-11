@@ -1,4 +1,5 @@
 ing = undefined
+
 $.pbox = (html, option={})->
     if ing
         return
@@ -7,6 +8,11 @@ $.pbox = (html, option={})->
     option = {
         className:"PboxMain"
         ico:"close"
+        keyup:(keyCode, tagName)->
+            if tagName != "TEXTAREA" and tagName != "INPUT"
+                if keyCode == 27
+                    rm()
+            return
         ...option
     }
     className = option.className
@@ -50,9 +56,9 @@ $.pbox = (html, option={})->
         keyup
         (e)->
             tagName = e.target.tagName
-            if tagName != "TEXTAREA" and tagName != "INPUT"
-                if e.keyCode == 27
-                    rm()
+            option.keyup(e.keyCode, tagName)
+            return
     )
     ing = undefined
+    elem.option = option
     return elem

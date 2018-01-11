@@ -1,49 +1,85 @@
-upload = require 'coffee/_lib/upload'
 
+UPLOAD_CN = {
+    photo:'图片'
+    file:"文件"
+}
+UPLOAD_INSERT = {
+    file: """<p><a target="_blank" href="%url">%name</a></p>"""
+    photo: """<p><img src="%url" alt="%name"></p>"""
+}
+EDITOR_ADD_BAR = undefined
+do ->
+    li = []
+    for key, value of UPLOAD_CN
+        li.push """<i title="上传#{value}" class="fa fa-#{key}"></i>"""
+    EDITOR_ADD_BAR = li.join('')
 
-editor_box = (editor, page, action)->
+editor_box = (editor, page, action, files=[])->
+    cn = UPLOAD_CN[action]
     input = undefined
-    files = undefined
     guid = ++ $.guid
 
+    ed = $(editor.elements)
+    place = ed.find(".medium-insert-active")
+    focus = ->
+        editor.selectElement(place[0])
+    _ = $.html()
+
     box = $.box.confirm(
-        """<div class="medium-box-upload"><div><label class="C" for="medium-box-upload#{guid}"><div class="FC2"><div class="FC1"><i class="fa fa-#{action}"></i><div>点此上传文件<br>按住CTRL键可多选</div></label><input id="medium-box-upload#{guid}" type="file" multiple></div></div></div><div class="ol"></div></div>"""
+        """<div class="medium-box-upload"><h1>#{EDITOR_ADD_BAR}</h1><div><label class="C" for="medium-box-upload#{guid}"><div>点此上传#{cn}<br>按住CTRL键可多选</div></label><input id="medium-box-upload#{guid}" type="file" multiple></div><div class="ol"></div></div>"""
+        cancel: focus
         ok:->
-            place = editor.find(".medium-insert-active")
-            setTimeout(
-                ->
-                    editor.focus()
-                200
-            )
+            focus()
+            if not files.length
+                return
+            ins = UPLOAD_INSERT[action]
+            console.log action, ins
             up = (pos)->
                 img = $ """<img class="I-loading">"""
                 if pos
                     place.after img
                 else
                     place.before img
-                upload.post(
-                    files[pos]
-                    SITE.URL
-                    (file, url)->
-                        place = $ """<p><img src="/#{$.escape url}" alt="#{$.escape file.name}"></p>"""
-                        img.replaceWith place
-                        if (++pos) < files.length
-                            up(pos)
-                        return
-                    page
-                )
+
+                System.import('coffee/_lib/upload').then (upload)->
+                    upload.post(
+                        files[pos]
+                        SITE.URL
+                        (file, url)->
+                            place = $(ins.render {
+                                name:$.escape(file.name)
+                                url:"/"+$.escape(url)
+                            })
+                            img.replaceWith place
+                            if (++pos) < files.length
+                                up(pos)
+                            return
+                        page
+                    )
             up(0)
             return
     )
+    box.find(".fa-#{action}").addClass 'now'
+    box.find('.fa').click ->
+        key = /fa-([^\s]+)/.exec(@className)[1]
+        if key != action
+            box.close()
+            editor_box(editor, page, key, files)
+
     input = box.find('input[type=file]')
-    input.change ->
+    file_li = ->
         _ = $.html()
-        _ """<ol>"""
-        files = @files
-        for i in files
-            _ """<li>#{$.escape i.name}<b class="size">#{upload.size i.size}</b></li>"""
-        _ """</ol>"""
+        if files.length
+            _ """<ol>"""
+            for i in files
+                _ """<li>#{$.escape i.name}<b class="size">#{require("coffee/_lib/upload/size") i.size}</b></li>"""
+            _ """</ol>"""
         box.find('.ol').html _.html()
+
+    input.change ->
+        files = @files
+        file_li()
+    file_li()
 
 
 EditorAdd = (page, editor)->
@@ -54,7 +90,8 @@ EditorAdd = (page, editor)->
     br = '<br>'
     cls_active_ = cls_active.slice 1
 
-    editor.on(
+    ed = $(editor.elements)
+    ed.on(
         'click'
         cls_active
         (e)->
@@ -74,9 +111,8 @@ EditorAdd = (page, editor)->
             if el.hasClass cls_open
                 close(el)
             else
-                el.html("""<span class="medium-insert-bar"><i class="fa fa-photo"></i><i class="fa fa-upload"></i></span>"""+br)
+                el.html """<span class="medium-insert-bar">#{EDITOR_ADD_BAR}</span>"""
                 el.addClass(cls_open)
-                editor.blur()
 
 
             return false
@@ -94,8 +130,8 @@ EditorAdd = (page, editor)->
         if $current.hasClass('medium-editor-insert-plugin')
             $current = $current.find('p:first')
         $p = if $current.is('p') then $current else $current.closest('p')
-        editor.clean()
-        if $current[0] == editor[0]
+        ed[0].clean()
+        if $current[0] == ed[0]
             return
         if not $el.hasClass('medium-editor-placeholder')
             p0 = $p[0]
@@ -104,7 +140,7 @@ EditorAdd = (page, editor)->
             else
                 turn = 0
 
-            li = editor.find(cls_active)
+            li = ed.find(cls_active)
             if turn and $p.hasClass cls_active_ and li.length == 1
                 return
             li.each(
@@ -141,7 +177,7 @@ EditorAdd = (page, editor)->
 # @hideButtons()
         return
     )
-    editor.on(
+    ed.on(
         "selectstart mousedown"
         ".medium-insert,#{cls_ins}"
         (e)->
@@ -286,7 +322,7 @@ module.exports =  (box, md, file)->
 
     ed = $(editor.elements)
     wrap_name = "#text BR A SPAN U DEL".split(' ')
-    ed.clean = ->
+    ed[0].clean = ->
         self = @
         if not ed.html()
             ed.html '<p><br></p>'
@@ -320,12 +356,12 @@ module.exports =  (box, md, file)->
             # # Move caret at the end of the element that's being wrapped
             # # moveCaret me.parent(), me.text().length
             # return
-    EditorAdd box, ed
+    EditorAdd box, editor
     editor_elem.on(
         '.medium-editor-action'
         'click'
         ->
-            ed.clean()
+            ed[0].clean()
     )
     h1 = f('input.H1')
     _title = (val)->
@@ -365,7 +401,7 @@ module.exports =  (box, md, file)->
 
         box.find('.medium-editor-toolbar,.medium-editor-anchor-preview').css({top:0})
         editor.setContent marked(md) or "<p><br></p>"
-        ed.clean()
+        ed[0].clean()
         editor.autofocus()
         file = file_
 
@@ -405,7 +441,7 @@ module.exports =  (box, md, file)->
     editor.subscribe(
         'toolbarClick'
         ->
-            ed.clean()
+            ed[0].clean()
     )
 
     box.on(

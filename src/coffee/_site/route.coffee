@@ -164,21 +164,21 @@ scrollHash = (hash)->
 window.GO = router
 if history.pushState
     $('body').on 'click', 'a', (e)->
-        if @hostname == location.hostname
-            if not $(@).hasClass('go')
-                url = @pathname
-                hash = @hash
-                if hash
-                    url += hash
-                if url == "#{location.pathname}#{location.hash}"
-                    if not hash
-                        $('#Page').scrollTop(0)
-                else
-                    router.push url
-                scrollHash hash
-                e.preventDefault()
-                return
-        else
+        url = @pathname
+        if @hostname != location.hostname or url.slice(0,5) == "/-/S/"
             if not @target
                 @target = "_blank"
                 @blur()
+            return
+        else if not $(@).hasClass('go')
+            hash = @hash
+            if hash
+                url += hash
+            if url == "#{location.pathname}#{location.hash}"
+                if not hash
+                    $('#Page').scrollTop(0)
+            else
+                router.push url
+            scrollHash hash
+            e.preventDefault()
+            return
