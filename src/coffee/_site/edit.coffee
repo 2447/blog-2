@@ -44,11 +44,11 @@ editor_box = (editor, page, action, files=[])->
                 System.import('coffee/_lib/upload').then (upload)->
                     upload.post(
                         files[pos]
-                        SITE.URL
+                        PP.URL
                         (file, url)->
                             place = $(ins.render {
                                 name:$.escape(file.name)
-                                url:"/"+$.escape(url)
+                                url:PP.F+"S/"+$.escape(url)
                             })
                             img.replaceWith place
                             if (++pos) < files.length
@@ -135,7 +135,7 @@ EditorAdd = (page, editor)->
             return
         if not $el.hasClass('medium-editor-placeholder')
             p0 = $p[0]
-            if p0 and p0.innerHTML == '<br>'
+            if p0 and p0.tagName == "P"
                 turn = 1
             else
                 turn = 0
@@ -400,7 +400,10 @@ module.exports =  (box, md, file)->
         md = md.join('\n')
 
         box.find('.medium-editor-toolbar,.medium-editor-anchor-preview').css({top:0})
-        editor.setContent marked(md) or "<p><br></p>"
+        md_html = marked(md)
+        {F} = PP
+        md_html = md_html.replaceAll('="'+F.slice(-3), '="'+F)
+        editor.setContent md_html or "<p><br></p>"
         ed[0].clean()
         editor.autofocus()
         file = file_
@@ -412,6 +415,7 @@ module.exports =  (box, md, file)->
         return [title+"\n"+html, title, html]
 
     [initHTML] = snapshot()
+
     preHTML = initHTML
     saver = undefined
     save = ->
@@ -428,9 +432,10 @@ module.exports =  (box, md, file)->
             saver = undefined
          [_html, title, html] = snapshot()
          if _html != preHTML
-             preHTML = _html
+            preHTML = _html
             System.import("./edit/save.coffee").then (mod)->
                 $.ajax = $._ajax
+
                 mod(file, title, html, 0)
                 $._ajax = $.ajax
 

@@ -97,12 +97,12 @@ body.bind 'copy', (e)->
     if s and s.length >= 50
         title = document.title
         href = location.href
-        tip = "来源 : "
-        html = "<div>"+$.txt2html(s)+"""<br><p>#{tip}#{$.escape title} ( <a href="#{$.escape href}" target="_blank">#{$.escape href}</a> )</p></div>"""
+        tip = "来源 : 『 "
+        html = "<div>"+$.txt2html(s)+"""<br><p>#{tip}#{$.escape title} 』 ( <a href="#{$.escape href}" target="_blank">#{$.escape href}</a> )</p><p>#{$.escape $.DOC_TITLE}</p></div>"""
         c = e.originalEvent.clipboardData || window.clipboardData
         if c
             p = 'text/plain'
-            txt = s+"\n\n#{tip}"+title+" ( #{href} )"
+            txt = s+"\n\n#{tip}"+title+" 』 ( #{href} )\n\n#{$.DOC_TITLE}"
             c.setData(p, txt)
 
             if c.getData(p)

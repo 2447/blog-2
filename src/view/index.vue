@@ -14,8 +14,18 @@ section.bar{
     border-top: 0;
     background:#fdfdfd;
     box-shadow: rgba(0,0,0,.05) 0 0 5px inset;
+
     a{
         color:#000;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		position: absolute;
+		right: 78px;
+		height: 64px;
+		line-height: 64px;
+		display: inline-block;
+		white-space: nowrap;
+		left: 18px;
     }
     .I-close{
         &:before{
@@ -125,13 +135,14 @@ export default {
         section = "section"
         for [[title, url], post_li],pos in SUMMARY
             if not url
-                url = section+"-"+pos
+                url = "_"+pos
+            url = "-S-"+url
             polen = post_li.length
             if polen
                 X = " X"
             else
                 X = ""
-            _ """<#{section} id="-#{url}" class=bar><a href="#-#{url}">#{title}</a><div class="R split"><i class="I I-close IBtn#{X}"></i></div></#{section}>"""
+            _ """<#{section} id="#{url}" class=bar><a href="##{url}">#{title}</a><div class="R split"><i class="I I-close IBtn#{X}"></i></div></#{section}>"""
             _ """<div class=poLi"""
             if polen
                 _ ">"

@@ -4,9 +4,11 @@ from os.path import abspath, dirname, basename, join, exists
 from dirreplace import dirreplace
 
 FROM_STRING = """
+SITE.URL
 """
 
 TO_STRING = """
+PP.URL
 """
 
 

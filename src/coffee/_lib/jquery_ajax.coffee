@@ -36,8 +36,8 @@ _getToml = _method("GET", (o)=>
 
 _url = (args)=>
     url = args[0]+".toml"
-    if url.indexOf("://") < 0
-        url = "/#{url}"
+    # if url.indexOf("://") < 0
+    #     url = "/#{url}"
     args[0] = url
     return args
 

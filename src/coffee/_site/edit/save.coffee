@@ -1,4 +1,6 @@
 module.exports = (file, h1, html, git)->
+    {F} = PP
+    html = html.replaceAll('="'+F, '="'+F.slice(-3))
     opt = {
         file
         h1

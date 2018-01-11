@@ -38,7 +38,7 @@ $.pbox = (html, option={})->
 
 
     _rm = ->
-        $.doc_title _title
+        document.title = _title
         setTimeout ->
             elem.remove()
             elem.trigger('rmed')

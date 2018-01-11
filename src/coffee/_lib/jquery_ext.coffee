@@ -123,13 +123,7 @@ escape : (str) =>
     return str.replace(/[&<>]/g, (tag)=>tagsToReplace[tag] || tag)
 DOC_TITLE : ''
 doc_title : (title)->
-    _TITLE = $.DOC_TITLE
-    if title
-        if _TITLE
-            title = title + " · " + _TITLE
-    else
-        title = _TITLE
-    document.title = title
+    document.title = title or $.DOC_TITLE
 txt2html : (txt)->
     r = []
     for i in txt.replace(/\r\n/g, "\n").replace(/\r/g, "\n").split("\n")

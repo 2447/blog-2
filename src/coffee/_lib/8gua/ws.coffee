@@ -1,13 +1,14 @@
 ReconnectingWebSocket = require 'reconnecting-websocket'
 
-window.PP = {}
 
 HOST = "8gua.win"
 PORT = 19841
-
-window.SITE = {
+F = "/-/"
+window.PP = {
     URL : "https://#{HOST}:#{PORT-1}/"
+    F
 }
+
 
 module.exports = (callback)->
     window.WS = ws = new ReconnectingWebSocket("wss://#{HOST}:#{PORT}")
@@ -15,7 +16,7 @@ module.exports = (callback)->
     _callback = ->
         if callback
             $(document).ajaxError (event, {status}, {url}) ->
-                #     if url.indexOf(SITE.URL) == 0
+                #     if url.indexOf(PP.URL) == 0
                 #         require('./ajax/box') 0
                 #         return
                 if status == 412
@@ -38,16 +39,18 @@ module.exports = (callback)->
     ws.onclose = ->
         if PP.open
             delete PP.open
+            PP.F = F
             $.toast '后台连接中断'
         require('coffee/_lib/8gua/ajax/err.coffee')(0)
         _callback()
 
     ws.onopen = ->
         PP.open = 1
+        PP.F = PP.URL+F.slice(1)
         System.import(
             'coffee/_lib/8gua/ajax/ok.coffee'
         ).then (mod)->
             mod(
-                SITE.URL
+                PP.URL
                 _callback
             )

@@ -21,10 +21,7 @@ require(
         "-/init"
         (site)->
             {name, slogan} = site
-            window.SITE = {
-                ... SITE
-                ... site
-            }
+            window.SITE = site
             if not name
                 GO.ln('init')
                 return
@@ -32,8 +29,8 @@ require(
             title = name
             if slogan
                 title += (" · " + slogan)
-
-            $.doc_title title
+            $.DOC_TITLE = title
+            $.doc_title()
             $ ->
                 require 'coffee/_pop'
                 vm = new Vue({

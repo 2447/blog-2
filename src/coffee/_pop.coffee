@@ -1,17 +1,21 @@
 marked = require('coffee/_lib/marked')
 
 renderMd = (url, prefix)->
+    console.log "-/md/"+url+".md"
     PP.get(
         "-/md/"+url+".md"
         (md)=>
-            @find('.PboxMain').replaceWith """<div class=TXT>#{marked(md)}</div>"""
+            html = marked(md)
             if PP.open
+                {F} = PP
+                html = html.replaceAll('="'+F.slice(-3), '="'+F)
                 edit = $(
                     """<a href="/edit/#{url}.md" class="I I-edit PboxIco" style="font-size:24px;bottom:11px;right:8px;top:auto;"></a>"""
                 ).click =>
                     @[0]._rm()
                     return
                 @append edit
+            @find('.PboxMain').replaceWith """<div class=TXT>#{html}</div>"""
 
             $.doc_title (prefix or '') + @find('h1:first').text()
     )

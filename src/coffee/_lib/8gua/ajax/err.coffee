@@ -9,5 +9,7 @@ module.exports = (code)->
                 d.reject()
                 d
         (f)=>
-            f
+            ->
+                arguments[0] = "/"+arguments[0]
+                f.apply @,arguments
     )
