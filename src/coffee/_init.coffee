@@ -2,6 +2,7 @@ window.$ = window.jQuery = require "jquery"
 window.store = require 'store2'
 require 'coffee/_lib/jquery_ext'
 require('coffee/_lib/jquery_ajax')
+require 'coffee/_lib/tld_domain'
 
 import Vue from 'vue'
 import 'coffee/_lib/nprogress/init'

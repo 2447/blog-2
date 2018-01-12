@@ -19,7 +19,7 @@ module.exports = (callback)->
                 #     if url.indexOf(PP.URL) == 0
                 #         require('./ajax/box') 0
                 #         return
-                if status == 412
+                if status == 412 or status == 200
                     return
                 $.box.alert("""<h1><p>出错了！错误代码: #{status}</p><p style="word-break: break-all">请求地址 :</p><p><a target="_blank" href="#{url}">#{url}</p></h1>""")
             callback()

@@ -1,21 +1,17 @@
-marked = require('coffee/_lib/marked')
-
 renderMd = (url, prefix)->
-    console.log "-/md/"+url+".md"
     PP.get(
         "-/md/"+url+".md"
         (md)=>
-            html = marked(md)
+            [title, html] = require('coffee/_lib/load_md')(md)
             if PP.open
-                {F} = PP
-                html = html.replaceAll('="'+F.slice(-3), '="'+F)
                 edit = $(
                     """<a href="/edit/#{url}.md" class="I I-edit PboxIco" style="font-size:24px;bottom:11px;right:8px;top:auto;"></a>"""
                 ).click =>
                     @[0]._rm()
                     return
                 @append edit
-            @find('.PboxMain').replaceWith """<div class=TXT>#{html}</div>"""
+
+            @find('.PboxMain').replaceWith """<div class=TXT><h1>#{$.escape(title or "无题")}</h1>#{html}</div>"""
 
             $.doc_title (prefix or '') + @find('h1:first').text()
     )
@@ -26,32 +22,17 @@ MAP = {
         if $(".EDIT.Pbox")[0]
             return
 
-        p = PP.json("post/edit/#{file or ''}")
         $.when(
-            p
+            System.import("coffee/_site/edit/_load")
             System.import('coffee/_site/edit')
         ).done (
-            ([md], mod)=>
-                {md, file, tmp} = md
-                edit = =>
-                    mod(@, md, file)
-                    history.replaceState(null,null, "/edit/"+file)
-                if tmp
-                    $.box.confirm(
-                        """<h1 class=TC><p>有未保存更改</p><p>是否恢复？</p></h1>"""
-                        {
-                            okBtn:"恢复"
-                            cancelBtn:"否"
-                            ok:->
-                                edit()
-                            cancel:->
-                                md = tmp
-                                edit()
-                        }
-                    )
-                else
-                    edit()
-                return
+            (load, mod)=>
+                load(
+                    file
+                    (md, file)=>
+                        mod(@, md, file)
+                        history.replaceState(null,null, "/edit/"+file)
+                )
         )
     "-":(file)->
         if file.slice(0,2) != "S/"

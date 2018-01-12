@@ -11,9 +11,10 @@ module.exports = ({file, editor, h1})->
                 html
             ).then ->
                 PP.get(
+                    # 必须这样写，后台才能拿到参数
                     "post/edit//"
                     (file)->
-                        editor.load_md(file, "")
+                        editor.load_md(file, '')
                         history.replaceState(null,null, "/edit/"+file)
                 )
         else

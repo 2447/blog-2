@@ -20,14 +20,14 @@ class TOAST
             msg = _.html()
 
         li = @_li
-        elem = $ """<div class="animated bounceInRight toast" style="margin-bottom:#{@_offset}px;">#{msg}</div>"""
+        elem = $ """<div class="animated bounceInLeft toast" style="margin-bottom:#{@_offset}px;">#{msg}</div>"""
         li.push elem
         body.append(
             elem
         )
         @_offset += (18+elem.height())
         elem.close = =>
-            elem.addClass "bounceOutRight"
+            elem.addClass "bounceOutLeft"
             setTimeout(
                 =>
                     li.splice li.indexOf(elem), 1

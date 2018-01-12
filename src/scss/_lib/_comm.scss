@@ -31,8 +31,14 @@ $SELECT_LEFT: 83px;
     select {
         font-weight: 200;
         border: 0;
+        text-align: center;
+        text-align-last: center;
         padding: 18px 18px 18px $SELECT_LEFT;
         border-bottom: 1px dashed #ddd;
+
+        &:hover {
+            color: #f40;
+        }
     }
 
     .menu {
@@ -100,7 +106,7 @@ $SELECT_LEFT: 83px;
     label {
         user-select: none;
         position: absolute;
-        line-height: 64px;
+        line-height: 68px;
         pointer-events: none;
     }
 }
@@ -134,6 +140,16 @@ $SELECT_LEFT: 83px;
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
     pointer-events: none;
+}
+
+.SELECT:hover {
+    &:after {
+        border-top-color: #f40;
+    }
+
+    input {
+        color: #f40;
+    }
 }
 
 ._submit {

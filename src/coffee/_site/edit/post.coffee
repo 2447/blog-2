@@ -45,12 +45,15 @@ module.exports = System.import("./_slide").then (slideout)->
                 return
             h.find('.I-edit').click ->
                 p = @parentNode.parentNode.title
-                PP.get(
-                    "-/md/"+p
-                    (md)->
-                        editor.load_md p, md
-                        option.slide.close()
-                        history.replaceState(null,null, "/edit/"+p)
+                System.import("coffee/_site/edit/_load").then(
+                    (load)->
+                        load(
+                            p
+                            (md)->
+                                editor.load_md p, md
+                                option.slide.close()
+                                history.replaceState(null,null, "/edit/"+p)
+                        )
                 )
             return h
 
@@ -140,7 +143,9 @@ module.exports = System.import("./_slide").then (slideout)->
                     file_pos = 0
                 tab[file_pos].click()
                 if not file_pos
-                    file_pos = en_li.indexOf(file_dir)
+                    file_pos = en_li.indexOf(file_dir[0])
+                    if not file_pos and en_li.length
+                        file_pos = 0
                     if file_pos + 1
                         html.find('.dir I')[file_pos].click()
 

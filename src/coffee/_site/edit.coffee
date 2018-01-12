@@ -33,7 +33,6 @@ editor_box = (editor, page, action, files=[])->
             if not files.length
                 return
             ins = UPLOAD_INSERT[action]
-            console.log action, ins
             up = (pos)->
                 img = $ """<img class="I-loading">"""
                 if pos
@@ -221,7 +220,6 @@ MediumEditorTable = require "coffee/_lib/medium-editor-tables.coffee"
 # ">+</a>
 
 
-marked = require('coffee/_lib/marked')
 # turndownService.keep(['del', 'u'])
 
 # turndownService.addRule('~~', {
@@ -384,39 +382,29 @@ module.exports =  (box, md, file)->
         else
             h1.focus()
 
-    editor.load_md = (file_, md)->
-        md = (md or '').split("\n")
-        title = ""
-        while md.length
-            i = md[0]
-            if not $.trim(i)
-                md.shift()
-                continue
-            if i.charAt(0) == "#"
-                title = $.trim(md.shift().replace(/^#/g, ''))
-            break
-        _title title
-        h1.val title
-        md = md.join('\n')
-
-        box.find('.medium-editor-toolbar,.medium-editor-anchor-preview').css({top:0})
-        md_html = marked(md)
-        {F} = PP
-        md_html = md_html.replaceAll('="'+F.slice(-3), '="'+F)
-        editor.setContent md_html or "<p><br></p>"
-        ed[0].clean()
-        editor.autofocus()
-        file = file_
-
-    editor.load_md(file, md)
+    initHTML = preHTML = undefined
     snapshot = =>
         html = editor.getContent()
         title = h1.val()
         return [title+"\n"+html, title, html]
 
-    [initHTML] = snapshot()
+    editor.load_md = (file_, md)->
+        [title, md_html] = require('coffee/_lib/load_md')(md)
 
-    preHTML = initHTML
+        _title title
+        h1.val title
+
+        box.find('.medium-editor-toolbar,.medium-editor-anchor-preview').css({top:0})
+        editor.setContent md_html or "<p><br></p>"
+        ed[0].clean()
+        editor.autofocus()
+        file = file_
+        [initHTML] = snapshot()
+        preHTML = initHTML
+
+    editor.load_md(file, md)
+
+
     saver = undefined
     save = ->
         if saver
@@ -436,7 +424,7 @@ module.exports =  (box, md, file)->
             System.import("./edit/save.coffee").then (mod)->
                 $.ajax = $._ajax
 
-                mod(file, title, html, 0)
+                mod(file, title, html, {git:0})
                 $._ajax = $.ajax
 
     editor.subscribe(

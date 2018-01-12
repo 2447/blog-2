@@ -1,4 +1,4 @@
-module.exports = (file, h1, html, git)->
+module.exports = (file, h1, html, option)->
     {F} = PP
     html = html.replaceAll('="'+F, '="'+F.slice(-3))
     opt = {
@@ -6,8 +6,7 @@ module.exports = (file, h1, html, git)->
         h1
         html
     }
-    if git != undefined
-        opt.git = git
+    $.extend(opt, option)
     PP.post(
         "post"
         opt
