@@ -21,7 +21,7 @@ MAP = {
         @option.keyup = ->
         if $(".EDIT.Pbox")[0]
             return
-
+        defer = $.Deferred()
         $.when(
             System.import("coffee/_site/edit/_load")
             System.import('coffee/_site/edit')
@@ -32,8 +32,11 @@ MAP = {
                     (md, file)=>
                         mod(@, md, file)
                         history.replaceState(null,null, "/edit/"+file)
-                )
+                        defer.resolve()
+                ).catch defer.reject()
         )
+        return defer
+
     "-":(file)->
         if file.slice(0,2) != "S/"
             renderMd.call(
