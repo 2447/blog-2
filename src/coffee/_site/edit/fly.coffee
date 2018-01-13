@@ -1,18 +1,15 @@
 DRAFT = "draft"
 DRAFT_KEY = "!/"+DRAFT
+
+
 ACTION = {
-    "":->
-        System.import("./_box/dir").then(
-            (mod)=>
-                mod().done (dir, name)=>
-                    @val name
-                    @[0].dataset.v =  dir
-        )
-        return [@[0].dataset.v, @val()]
 }
+
+
 DRAFT_ICO = " "
 ACTION[DRAFT_KEY] = (elem)->
     return elem.text()+DRAFT_ICO
+
 
 select_html = (file, callback)->
     PP.get(
@@ -32,10 +29,15 @@ select_html = (file, callback)->
                     if file.startsWith(dir+"/")
                         val = dir
                         text = name
-                    _ """<div class=li><b class="v" data-v="#{$.escape dir}">#{$.escape name}</b><i class="I I-edit IBtn"></i></div>"""
+                    _ _select(dir,name)
             _ t.render({cn:'新建章节',en:"add",v:""})
-            callback _.html(), val, text
+            callback $(_.html()), val, text
     )
+
+_select = (dir, name)->
+    return """<div class=li><b class="v" data-v="#{$.escape dir}">#{$.escape name}</b><i class="I I-edit IBtn"></i></div>"""
+
+
 module.exports = System.import("./_slide").then (slideout)->
     html = $ require('./fly.slm')
     input = html.find('input.select')
@@ -45,6 +47,19 @@ module.exports = System.import("./_slide").then (slideout)->
                 text = text + DRAFT_ICO
             input.val text
             input[0].dataset.v = val
+
+
+            ACTION[""] = (elem)->
+                System.import("./_box/dir").then(
+                    (mod)=>
+                        mod().done (dir, name)=>
+                            @val name
+                            @[0].dataset.v =  dir
+                            select.splice(-1,0,$(_select(dir, name))[0])
+                            return
+                )
+                return [@[0].dataset.v, @val()]
+
 
             require("coffee/_lib/select")(
                 input

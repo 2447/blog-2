@@ -33,7 +33,7 @@ MAP = {
                         mod(@, md, file)
                         history.replaceState(null,null, "/edit/"+file)
                         defer.resolve()
-                ).catch defer.reject()
+                ).catch defer.reject
         )
         return defer
 
