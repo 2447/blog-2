@@ -62,6 +62,7 @@ module.exports = (name, dir, defer)->
                 old:dir
             }
         ).then ({dir, name})->
+            dir = dir.toLowerCase()
             box.close()
             $.box.alert """章节『#{$.escape name}』(#{dir}) #{okBtn}成功！"""
             defer.resolve(
