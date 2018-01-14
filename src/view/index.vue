@@ -81,8 +81,6 @@ header{
                 a.I.I-edit.IBtn href="/edit"
             .aLi
                 a.now href="/" 目录
-                a href="/reply"
-                    | 回复
         .MB90
 
 

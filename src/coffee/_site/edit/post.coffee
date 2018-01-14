@@ -12,7 +12,7 @@ module.exports = System.import("./_slide").then (slideout)->
             _ = $.html()
             _ """<ul class="UL-#{en}">"""
             if li.length
-                for [title, p] in li
+                for [p, title] in li
                     p = $.escape en+"/"+p
                     _ """<li title="#{p}"><div class="R"><i class="I I-trash"></i><i class="I I-edit"></i></div><h2>#{$.escape title}</h2></li>"""
             else
@@ -87,10 +87,11 @@ module.exports = System.import("./_slide").then (slideout)->
                                 onStart:->
                                     h.find('.dir').removeClass 'open'
                                     h.find('ul').remove()
+                                    return
                                 onEnd:->
                                     PP.postJSON(
                                         "post/sort/dir"
-                                        (i.dataset.en for i in h.find('.dir'))
+                                        (i.dataset.v for i in h.find('.dir'))
                                     )
                                     return
                             }
@@ -119,16 +120,28 @@ module.exports = System.import("./_slide").then (slideout)->
                             else
                                 pos = p.className.split(' ').pop().slice(3) - 0
                                 en = en_li[pos]
-                                po_li = render(en, li_li[pos+EN_LEN])
+                                md_pos = pos+EN_LEN
+                                md_li = li_li[md_pos]
+                                po_li = render(en, md_li)
                                 new Sortable(
                                     po_li[0]
                                     onEnd:->
                                         offset = en.length+1
-                                        t = (i.title.slice(offset) for i in po_li.find('li'))
-                                        t.push en
+                                        md_dict = {}
+                                        for [md_en, md_cn] in md_li
+                                            md_dict[md_en] = md_cn
+
+                                        title_en = []
+                                        md_li = []
+                                        for i in po_li.find('li')
+                                            md_en = i.title.slice(offset)
+                                            title_en.push md_en
+                                            md_li.push [md_en, md_dict[md_en]]
+                                        li_li[md_pos] = md_li
+
                                         PP.postJSON(
                                             "post/sort/li"
-                                            t
+                                            [en].concat title_en
                                         )
                                         return
                                 )
