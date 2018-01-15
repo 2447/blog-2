@@ -70,7 +70,7 @@ header{
                 i class="I I-logo"
                 b class="h1" {{hostname}}
         .R
-            i v-on:click="menu" class="I I-menu IBtn on"
+            i v-on:click="side" class="I I-menu IBtn on"
     .Pbody
         header
             .siteH2
@@ -122,15 +122,14 @@ export default {
         if count
             SUMMARY[count-1].push li
 #        SUMMARY = _.html()
-        $.extend(
-            {
+        {
             hostname:location.hostname.toUpperCase()
-            }
-            SITE
-        )
+            slogan:SITE.slogan
+            name:SITE.name
+        }
     func:
-        menu : ->
-            System.import('coffee/_site/index/menu').then (m)=>m()
+        side : ->
+            System.import('coffee/_site/index/side').then (m)=>m()
     mounted:->
         page = $("#Page")
 

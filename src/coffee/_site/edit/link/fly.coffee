@@ -13,8 +13,6 @@ module.exports = ({h1, file, editor, box})->
                 $.box.alert "『#{$.escape(title or '无题')}』保存成功"
                 if url
                     url = file.slice(2,-3)
-                    if url.slice(-6) == "/index"
-                        url = url.slice(0,-6)
                     GO.push "/"+url
                 return
     )

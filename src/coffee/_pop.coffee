@@ -1,22 +1,4 @@
-renderMd = (url, prefix)->
-    PP.get(
-        "-/md/"+url+".md"
-        (md)=>
-            [title, html] = require('coffee/_lib/load_md')(md)
-            if PP.open
-                edit = $(
-                    """<a href="/edit/#{url}.md" class="I I-edit PboxIco" style="font-size:24px;bottom:11px;right:8px;top:auto;"></a>"""
-                ).click =>
-                    @[0]._rm()
-                    return
-                @append edit
-
-            @find('.PboxMain').replaceWith """<div class=TXT><h1>#{$.escape(title or "无题")}</h1>#{html}</div>"""
-
-            $.doc_title (prefix or '') + @find('h1:first').text()
-    )
-
-MAP = {
+module.exports = MAP = {
     edit : (file)->
         @option.keyup = ->
         if $(".EDIT.Pbox")[0]
@@ -43,32 +25,26 @@ MAP = {
 
     "-":(file)->
         if file.slice(0,2) != "S/"
-            renderMd.call(
-                @
-                file
-            )
+            System.import(
+                "coffee/_pop/_md"
+            ).then (render)=>
+                render.call(
+                    @
+                    file
+                )
         return
-    help:(file)->
-        renderMd.call(
-            @
-            "!/help/#{file or 'index'}"
-            '帮助 - '
-        )
+    # help:(file)->
+    #     renderMd.call(
+    #         @
+    #         "!/help/#{file or 'index'}"
+    #         '帮助 - '
+    #     )
     ...  require("./plugin.coffee")
 }
 
 
 
-_md = (link)->
-    MAP[link] = ->
-        renderMd.call(
-            @
-            "!/"+link
-        )
 
-do ->
-    for i in "about link".split(' ')
-        _md i
 
 split_n = require('coffee/_lib/split_n')
 
