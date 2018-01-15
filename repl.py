@@ -4,11 +4,11 @@ from os.path import abspath, dirname, basename, join, exists
 from dirreplace import dirreplace
 
 FROM_STRING = """
-System.import("./_slide")
+coffee/_site/edit/_box/dir
 """
 
 TO_STRING = """
-System.import("coffee/_site/edit/_slide")
+coffee/_site/edit/blog/_box/dir
 """
 
 

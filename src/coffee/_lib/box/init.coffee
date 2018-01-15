@@ -48,7 +48,7 @@ _alert = (html, option)->
 body = $ 'body'
 
 
-$.box = box = {
+$.box = {
     err : (html, option)->
         _alert """<h1 style="font-weight:bold;color:red">出错了！</h1><h1>#{html}</h1>""", option
 
@@ -58,7 +58,7 @@ $.box = box = {
         _alert html , option
 
     prompt:(html, option)->
-       _box = box.confirm html, option
+       _box = $.box.confirm html, option
        autocomplete = 'autocomplete'
        for i in _box.find('input')
            if not i.autocomplete

@@ -5,7 +5,7 @@ module.exports = (func)=>
     (option)->
         {ico} = option
         btn = $ @
-        pbox = btn.parents('.Pbox')
+        pbox = btn.closest('.Pbox')
         close_btn = pbox.find('.PboxIco.I-close')
         option.box = pbox[0]
         if slide

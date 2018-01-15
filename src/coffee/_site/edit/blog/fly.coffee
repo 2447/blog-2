@@ -50,7 +50,7 @@ module.exports = System.import("coffee/_site/edit/_slide").then (slideout)->
 
 
             ACTION[""] = (elem)->
-                System.import("coffee/_site/edit/_box/dir").then(
+                System.import("coffee/_site/edit/blog/_box/dir").then(
                     (mod)=>
                         mod().done (dir, name)=>
                             @val name
@@ -73,7 +73,7 @@ module.exports = System.import("coffee/_site/edit/_slide").then (slideout)->
                         b = @previousSibling
                         v = b.dataset.v
                         input0 = input[0]
-                        System.import("coffee/_site/edit/_box/dir").then (mod)=>
+                        System.import("coffee/_site/edit/blog/_box/dir").then (mod)=>
                             mod(
                                 b.innerText
                                 b.dataset.v

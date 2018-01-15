@@ -5,7 +5,7 @@
 
 八卦博客，是静态博客，也是动态博客。
 
-目前，支持部署到 [码云页面](http://git.mydoc.io/?t=154714) 、[GITHUB PAGE](https://pages.github.com) 、[BITBUCKET PAGE](https://pages.bitbucket.io) 。
+支持部署到 [码云页面](http://git.mydoc.io/?t=154714) 、[GITHUB PAGE](https://pages.github.com) 、[BITBUCKET PAGE](https://pages.bitbucket.io) 。
 
 以上空间，不但永久免费、可以绑定自己的域名；  
 而且，每次的编辑修改，都着有完整的版本记录。
@@ -43,7 +43,6 @@
 1.  码云 [i8gua.gitee.io](https://i8gua.gitee.io)
 2.  GITHUB [i8gua.github.io](https://i8gua.github.io)
 3.  BITBUCKET [8gua.bitbucket.io](https://8gua.bitbucket.io)
-    
 
 ### 关于
 

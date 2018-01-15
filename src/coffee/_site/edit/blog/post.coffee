@@ -101,7 +101,7 @@ module.exports = System.import("coffee/_site/edit/_slide").then (slideout)->
                                 return
                             me = $ @
                             b = me.find('b')
-                            System.import("coffee/_site/edit/_box/dir").then (box_dir)->
+                            System.import("coffee/_site/edit/blog/_box/dir").then (box_dir)->
                                 box_dir(
                                     b.text()
                                     me.data('v')
