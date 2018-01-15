@@ -47,6 +47,7 @@ form#PBY v-on:submit.prevent="submit"
 export default {
     func:
         submit : ->
+            SITE = window.SITE or {}
             {name, slogan} = data = @$data
             if name == SITE.name and slogan == SITE.slogan
                 GO.push '/'

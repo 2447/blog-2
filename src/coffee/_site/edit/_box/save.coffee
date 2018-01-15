@@ -2,7 +2,7 @@ module.exports = (file, title, html)->
     new Promise(
         (resolve, reject)->
             save = (git)->
-                System.import("../save.coffee").then(
+                System.import("coffee/_site/edit/save.coffee").then(
                     (mod)->
                         opt = {}
                         if git != undefined
@@ -15,7 +15,7 @@ module.exports = (file, title, html)->
                         )
                         resolve()
                 )
-            if file.slice(0,8) == "!/draft/"
+            if file.slice(0,2) == "$/"
                 save()
             else
                 save(0)

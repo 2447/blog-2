@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from "vue-router"
 #import VueRouter from "vue-router/dist/vue-router.js"
 Vue.use(VueRouter)
-
+window.Vue = Vue
 
 scrollbar = {
     update:=>
@@ -13,27 +13,6 @@ $ ->
         (_)->
             $("#Page").css({overflow:'hidden'})
     )
-
-VueRouter.prototype.reload = ->
-    history = @history
-    current = history.current
-    history.updateRoute {matched:[], path:""}
-    @replace current
-    return
-
-
-VueRouter.prototype.ln = (path)->
-    pos = path.indexOf(' ')
-    history = @history
-    route = @match('/'+path.slice(pos+1), history.current)
-    history.current = @match('/'+path.slice(0,pos) , history.current)
-    history.ensureURL()
-    history.confirmTransition(
-        route
-        ->
-            history.updateRoute(route)
-    )
-    return
 
 string_dict_default = (s) =>
     s = s.split(' ')
@@ -182,3 +161,27 @@ if history.pushState
             scrollHash hash
             e.preventDefault()
             return
+
+VueRouter.prototype.ln = (path)->
+    pos = path.indexOf(' ')
+    history = @history
+
+    route = @match('/'+path.slice(pos+1), history.current)
+    history.confirmTransition(
+        route
+        =>
+            history.updateRoute(route)
+            setTimeout =>
+                history.current = @match(
+                    '/'+path.slice(0, pos) , history.current
+                )
+                history.ensureURL()
+    )
+    return
+
+VueRouter.prototype.reload = ->
+    history = @history
+    current = history.current
+    history.updateRoute {matched:[], path:""}
+    @replace current
+    return

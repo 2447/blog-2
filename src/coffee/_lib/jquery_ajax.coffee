@@ -1,11 +1,11 @@
 $._ajax = $.ajax
 
 
-
 $.ajax = ->
     NProgress.inc()
     $._ajax.apply(@,arguments).always ->
         NProgress.done()
+
 
 _method = (method, parse=$.parseJSON) =>
     (url, data, callback) ->

@@ -6,22 +6,19 @@ cd $PREFIX/src/cli
 
 ./dist.sh
 
-
 PAGE=$PREFIX/../8gua.blog
 
 cd $PAGE
 
-rm -rf ./-S ./-
-
+rm -rf ./-S/*.* ./-S/dll
 cp -R $PREFIX/dist/* $PAGE
-mkdir -p $PAGE/-S/font
-cp -R $PREFIX/file/font/.font-spider $PAGE/-S/font
+
 
 cd $PAGE
 rm -rf index.html
 mv ./-S/index.html .
 rm -rf 404.html
-cp index.html 404.html
+ln -s index.html 404.html
 #ln -s ./-S/index.html .
 #ln -s index.html 404.html
 
@@ -33,7 +30,7 @@ sync() {
     git pull origin $branch && git push origin $branch;
 }
 
-sync
+sync && ssh hk "cd 8gua.blog;git pull" &
 git push github &
 git push bitbucket &
 

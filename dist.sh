@@ -3,5 +3,5 @@
 PREFIX=$(cd "$(dirname "$0")"; pwd)
 
 cd $PREFIX
-./src/cli/dist.8gua.sh
+./src/cli/dist.8gua.blog.sh
 ./dev

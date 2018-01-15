@@ -94,6 +94,9 @@ SUMMARY = []
 export default {
     get : "md/SUMMARY.md"
     data:(summary)->
+        if not window.SITE
+            GO.ln ' init'
+            return
         count = 0
         li = []
         for line in summary.split("\n")
@@ -119,10 +122,12 @@ export default {
         if count
             SUMMARY[count-1].push li
 #        SUMMARY = _.html()
-        {
-            ... SITE
+        $.extend(
+            {
             hostname:location.hostname.toUpperCase()
-        }
+            }
+            SITE
+        )
     func:
         menu : ->
             System.import('coffee/_site/index/menu').then (m)=>m()

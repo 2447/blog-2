@@ -28,6 +28,11 @@
         }
     }
 
+    ol {
+        list-style-position: inside;
+        padding-left: 0;
+    }
+
     p {
         & > img {
             max-width: 100%;

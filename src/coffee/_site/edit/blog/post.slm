@@ -1,6 +1,6 @@
 .EditDraft
   scss:
-    @import 'coffee/_site/edit/post.scss';
+    @import 'coffee/_site/edit/blog/post.scss';
   .tab
       a 已发布
       a rel="draft" 草稿箱

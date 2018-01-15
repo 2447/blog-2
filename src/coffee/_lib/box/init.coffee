@@ -57,6 +57,14 @@ $.box = box = {
             html = """<h1>#{html}</h1>"""
         _alert html , option
 
+    prompt:(html, option)->
+       _box = box.confirm html, option
+       autocomplete = 'autocomplete'
+       for i in _box.find('input')
+           if not i.autocomplete
+               i.autocomplete = 'off'
+       return _box
+
     confirm:(html, option)->
         box = _alert html, {
             btn:"""<div class="boxConfirm"><button class="btn ok" type="submit"><span>%okBtn</span></button><button type="reset" class="btn cancel"><span>%cancelBtn</span></button></div>"""

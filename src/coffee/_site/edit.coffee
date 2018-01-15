@@ -1,86 +1,13 @@
-
+EDITOR_ADD_BAR = undefined
 UPLOAD_CN = {
     photo:'图片'
     file:"文件"
 }
-UPLOAD_INSERT = {
-    file: """<p><a target="_blank" href="%url">%name</a></p>"""
-    photo: """<p><img src="%url" alt="%name"></p>"""
-}
-EDITOR_ADD_BAR = undefined
 do ->
     li = []
     for key, value of UPLOAD_CN
         li.push """<i title="上传#{value}" class="fa fa-#{key}"></i>"""
     EDITOR_ADD_BAR = li.join('')
-
-editor_box = (editor, page, action, files=[])->
-    cn = UPLOAD_CN[action]
-    input = undefined
-    guid = ++ $.guid
-
-    ed = $(editor.elements)
-    place = ed.find(".medium-insert-active")
-    focus = ->
-        editor.selectElement(place[0])
-    _ = $.html()
-
-    box = $.box.confirm(
-        """<div class="medium-box-upload"><h1>#{EDITOR_ADD_BAR}</h1><div><label class="C" for="medium-box-upload#{guid}"><div>点此上传#{cn}<br>按住CTRL键可多选</div></label><input id="medium-box-upload#{guid}" type="file" multiple></div><div class="ol"></div></div>"""
-        cancel: focus
-        ok:->
-            focus()
-            if not files.length
-                return
-            ins = UPLOAD_INSERT[action]
-            up = (pos)->
-                img = $ """<img class="I-loading">"""
-                if pos
-                    place.after img
-                else
-                    place.before img
-
-                System.import('coffee/_lib/upload').then (upload)->
-                    upload.post(
-                        files[pos]
-                        PP.URL
-                        (file, url)->
-                            place = $(ins.render {
-                                name:$.escape(file.name)
-                                url:PP.F+"S/"+$.escape(url)
-                            })
-                            img.replaceWith place
-                            if (++pos) < files.length
-                                up(pos)
-                            return
-                        page
-                    )
-            up(0)
-            return
-    )
-    box.find(".fa-#{action}").addClass 'now'
-    box.find('.fa').click ->
-        key = /fa-([^\s]+)/.exec(@className)[1]
-        if key != action
-            box.close()
-            editor_box(editor, page, key, files)
-
-    input = box.find('input[type=file]')
-    file_li = ->
-        _ = $.html()
-        if files.length
-            _ """<ol>"""
-            for i in files
-                _ """<li>#{$.escape i.name}<b class="size">#{require("coffee/_lib/upload/size") i.size}</b></li>"""
-            _ """</ol>"""
-        box.find('.ol').html _.html()
-
-    input.change ->
-        files = @files
-        file_li()
-    file_li()
-
-
 EditorAdd = (page, editor)->
     cls_ins = '.medium-insert-buttons'
     cls_ins_ = cls_ins.slice(1)
@@ -102,7 +29,15 @@ EditorAdd = (page, editor)->
 
             if el.hasClass 'fa'
                 close(el.parents('.'+cls_open))
-                editor_box(editor, page, target.className.split("-").pop())
+                System.import("coffee/_site/edit/upload").then (box)=>
+                    box(
+                        UPLOAD_CN
+                        EDITOR_ADD_BAR
+                        editor
+                        page
+                        target.className.split("-").pop()
+                    )
+                    return
                 return
             else if e.offsetX >= 0
                 return
@@ -236,7 +171,7 @@ MediumEditorTable = require "coffee/_lib/medium-editor-tables.coffee"
 
 
 
-module.exports =  (box, md, file)->
+module.exports =  (box, md, file, bar)->
     _ = $.html()
     for i in "add#新建 post#存档 fly#发布 ask#帮助".split(' ')
     #for i in "add#新建 draft#草稿箱 tag#标签 fly#发布 ask#帮助".split(' ')
@@ -469,7 +404,7 @@ module.exports =  (box, md, file)->
         _save()
         ico = /I-([^\s]+)/.exec(@className)[1]
         System.import(
-            "coffee/_site/edit/"+ico+".coffee"
+            "coffee/_site/edit/#{bar}/"+ico+".coffee"
         ).then(
             (mod)=>
                 mod.call(

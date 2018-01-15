@@ -4,7 +4,7 @@ OPEN = 'open'
 NOW = 'now'
 Sortable = require "sortablejs/Sortable.js"
 
-module.exports = System.import("./_slide").then (slideout)->
+module.exports = System.import("coffee/_site/edit/_slide").then (slideout)->
     slideout (resolve, option)->
         {file, editor} = option
         render = (en, li)->
@@ -101,7 +101,7 @@ module.exports = System.import("./_slide").then (slideout)->
                                 return
                             me = $ @
                             b = me.find('b')
-                            System.import("./_box/dir").then (box_dir)->
+                            System.import("coffee/_site/edit/_box/dir").then (box_dir)->
                                 box_dir(
                                     b.text()
                                     me.data('v')

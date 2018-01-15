@@ -1,5 +1,5 @@
 module.exports = ({file, editor, h1})->
-    System.import("./_box/save").then (
+    System.import("coffee/_site/edit/_box/save").then (
         save
     ) ->
         html = editor.getContent()

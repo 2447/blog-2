@@ -27,10 +27,14 @@ MAP = {
             System.import('coffee/_site/edit')
         ).done (
             (load, mod)=>
+                if file and file.slice(0,2) == "!/"
+                    bar = 'link'
+                else
+                    bar = 'blog'
                 load(
                     file
                     (md, file)=>
-                        mod(@, md, file)
+                        mod(@, md, file, bar)
                         history.replaceState(null,null, "/edit/"+file)
                         defer.resolve()
                 ).catch defer.reject

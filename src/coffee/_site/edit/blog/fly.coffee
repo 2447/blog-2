@@ -1,14 +1,14 @@
 DRAFT = "draft"
-DRAFT_KEY = "!/"+DRAFT
+DRAFT_KEY = "$"
+DRAFT_ICO = " "
 
 
 ACTION = {
+    $: (elem)->
+        return elem.text()+DRAFT_ICO
 }
 
 
-DRAFT_ICO = " "
-ACTION[DRAFT_KEY] = (elem)->
-    return elem.text()+DRAFT_ICO
 
 
 select_html = (file, callback)->
@@ -38,7 +38,7 @@ _select = (dir, name)->
     return """<div class=li><b class="v" data-v="#{$.escape dir}">#{$.escape name}</b><i class="I I-edit IBtn"></i></div>"""
 
 
-module.exports = System.import("./_slide").then (slideout)->
+module.exports = System.import("coffee/_site/edit/_slide").then (slideout)->
     html = $ require('./fly.slm')
     input = html.find('input.select')
     slideout (resolve, {file, editor, h1, box})->
@@ -50,7 +50,7 @@ module.exports = System.import("./_slide").then (slideout)->
 
 
             ACTION[""] = (elem)->
-                System.import("./_box/dir").then(
+                System.import("coffee/_site/edit/_box/dir").then(
                     (mod)=>
                         mod().done (dir, name)=>
                             @val name
@@ -73,7 +73,7 @@ module.exports = System.import("./_slide").then (slideout)->
                         b = @previousSibling
                         v = b.dataset.v
                         input0 = input[0]
-                        System.import("./_box/dir").then (mod)=>
+                        System.import("coffee/_site/edit/_box/dir").then (mod)=>
                             mod(
                                 b.innerText
                                 b.dataset.v
@@ -89,7 +89,7 @@ module.exports = System.import("./_slide").then (slideout)->
 
             )
             html.find('input.btn').click ->
-                System.import("./save.coffee").then(
+                System.import("coffee/_site/edit/save.coffee").then(
                     (mod)->
                         opt = {}
                         dir = input[0].dataset.v
