@@ -15,7 +15,6 @@ module.exports = ({file, editor, h1})->
                     "post/edit//"
                     (file)->
                         editor.load_md(file, '')
-                        history.replaceState(null,null, "/edit/"+file)
                 )
         else
             editor.setContent '<p><br></p>'

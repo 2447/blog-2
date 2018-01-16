@@ -1,4 +1,3 @@
-
 # /* .a */
 # /*     a href="/" 注册登录 */
 # .a
@@ -12,7 +11,7 @@ module.exports = ->
     html = $ require('slm/index/side').render(SITE)
     _ = $.html()
     for [link, name] in SITE.menu
-        _ """<div class="a"><a href="/#{link}">#{$.escape name}</a></div>"""
+        _ """<div class="a"><a href="/~#{link}">#{$.escape name}</a></div>"""
     html.find('.VC').append _.html()
 
     require('coffee/_lib/slideout')(

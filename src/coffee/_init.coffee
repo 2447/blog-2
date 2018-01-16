@@ -29,7 +29,7 @@ require(
                 li = []
                 if menu
                     _md = (link)->
-                        MAP[link] = (file)->
+                        MAP["~"+link] = (file)->
                             System.import(
                                 "coffee/_pop/_md"
                             ).then (render)=>
@@ -42,8 +42,8 @@ require(
                                 )
                             return
                     for i in menu.split("\n")
-                        [link, name] = split_n(i,' ',2)
-                        li.push([link, name])
+                        [link, cn] = split_n(i,' ',2)
+                        li.push([link, cn])
                         _md link
                 site.menu = li
                 window.SITE = site

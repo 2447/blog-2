@@ -224,7 +224,7 @@ $.fn.extend {
             fn(dict).then(
                 ->
                     $.err form, {}
-                    defer.resolve(dict)
+                    defer.resolve(dict, ...arguments)
                 (err)->
                     err = err.responseJSON
                     if typeof(err) == "string"

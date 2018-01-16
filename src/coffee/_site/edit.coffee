@@ -69,7 +69,7 @@ EditorAdd = (page, editor)->
             return
         if not $el.hasClass('medium-editor-placeholder')
             p0 = $p[0]
-            if p0 and p0.tagName == "P"
+            if p0 and p0.tagName == "P" and not $.trim($p.text())
                 turn = 1
             else
                 turn = 0
@@ -324,6 +324,9 @@ module.exports =  (box, md, file, bar)->
         return [title+"\n"+html, title, html]
 
     editor.load_md = (file_, md)->
+        url = "/edit/"+file_
+        if location.pathname != url
+            history.replaceState(null,null, url)
         [title, md_html] = require('coffee/_lib/load_md')(md)
 
         _title title

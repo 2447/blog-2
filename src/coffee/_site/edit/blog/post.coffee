@@ -52,7 +52,6 @@ module.exports = System.import("coffee/_site/edit/_slide").then (slideout)->
                             (md)->
                                 editor.load_md p, md
                                 option.slide.close()
-                                history.replaceState(null,null, "/edit/"+p)
                         )
                 )
             return h
