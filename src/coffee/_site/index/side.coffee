@@ -17,7 +17,7 @@ module.exports = ->
                 if i.startsWith('* ')
                     [name, link]  = i.slice(2).trim().split("](")
                     name = name.slice(1)
-                    link = link.slice(0,-1)
+                    link = link.slice(0,-4)
                     _ """<div class="a"><a href="/~#{link}">#{$.escape name}</a></div>"""
             html.find('.VC').append _.html()
             require('coffee/_lib/slideout')(
