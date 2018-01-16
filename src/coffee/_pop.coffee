@@ -9,7 +9,7 @@ module.exports = MAP = {
             System.import('coffee/_site/edit')
         ).done (
             (load, mod)=>
-                if file and file.slice(0,2) == "!/"
+                if file and file.slice(0,2) == "~/"
                     bar = 'link'
                 else
                     bar = 'blog'
@@ -33,12 +33,6 @@ module.exports = MAP = {
                     file
                 )
         return
-    # help:(file)->
-    #     renderMd.call(
-    #         @
-    #         "!/help/#{file or 'index'}"
-    #         '帮助 - '
-    #     )
     ...  require("./plugin.coffee")
 }
 
@@ -50,8 +44,19 @@ split_n = require('coffee/_lib/split_n')
 
 GO.beforeEach (to, from, next)=>
     path = to.path
-    [prefix, suffix] = split_n(path.slice(1),"/",2)
-    func = MAP[prefix]
+    if path.slice(0,2) == '/~'
+        func = (url)->
+            System.import(
+                "coffee/_pop/_md"
+            ).then (render)=>
+                render.call(
+                    @
+                    "~/"+path.slice(2)
+                )
+            return
+    else
+        [prefix, suffix] = split_n(path.slice(1),"/",2)
+        func = MAP[prefix]
     if func
         box = $.pbox(
             """<div class="VC2"><div class="VC1"><div class="TC"><div class="PageLoading I-loading"></div></div></div></div>"""

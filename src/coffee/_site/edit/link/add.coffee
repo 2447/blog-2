@@ -4,7 +4,7 @@ module.exports = ({file, editor})->
     ).then (box)=>
         box().then (url)->
             editor.load_md(
-                "!/"+url+".md"
+                "~/"+url+".md"
                 ''
             )
         return

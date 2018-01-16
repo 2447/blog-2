@@ -7,7 +7,7 @@ module.exports = ({h1, file, editor, box})->
                 file
                 title
                 editor.getContent()
-                {dir:"!"}
+                {dir:"~"}
             ).done (url)->
                 box._rm()
                 $.box.alert "『#{$.escape(title or '无题')}』保存成功"

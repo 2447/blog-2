@@ -22,30 +22,10 @@ require(
     PP.getToml(
         "-/init"
         (site)->
-            MAP = require 'coffee/_pop'
+            require 'coffee/_pop'
             {name, slogan, menu} = site
 
             if name
-                li = []
-                if menu
-                    _md = (link)->
-                        MAP["~"+link] = (file)->
-                            System.import(
-                                "coffee/_pop/_md"
-                            ).then (render)=>
-                                url = link
-                                if file
-                                    url += ("/"+file)
-                                render.call(
-                                    @
-                                    "!/"+url
-                                )
-                            return
-                    for i in menu.split("\n")
-                        [link, cn] = split_n(i,' ',2)
-                        li.push([link, cn])
-                        _md link
-                site.menu = li
                 window.SITE = site
 
                 title = name

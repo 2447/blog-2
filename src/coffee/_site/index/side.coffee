@@ -8,14 +8,21 @@
 #     a href="/help" 站点说明
 
 module.exports = ->
-    html = $ require('slm/index/side').render(SITE)
-    _ = $.html()
-    for [link, name] in SITE.menu
-        _ """<div class="a"><a href="/~#{link}">#{$.escape name}</a></div>"""
-    html.find('.VC').append _.html()
-
-    require('coffee/_lib/slideout')(
-        $ '.Page'
-        html
-        "Right"
+    PP.get(
+        "-/md/~/SUMMARY.md"
+        (txt)->
+            html = $ require('slm/index/side').render(SITE)
+            _ = $.html()
+            for i in txt.split("\n")
+                if i.startsWith('* ')
+                    [name, link]  = i.slice(2).trim().split("](")
+                    name = name.slice(1)
+                    link = link.slice(0,-1)
+                    _ """<div class="a"><a href="/~#{link}">#{$.escape name}</a></div>"""
+            html.find('.VC').append _.html()
+            require('coffee/_lib/slideout')(
+                $ '.Page'
+                html
+                "Right"
+            )
     )

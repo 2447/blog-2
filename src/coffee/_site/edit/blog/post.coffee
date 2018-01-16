@@ -71,7 +71,7 @@ module.exports = System.import("coffee/_site/edit/_slide").then (slideout)->
                     rel = @rel
                     pos = EN.indexOf(rel)
                     if pos + 1
-                        h = render("!/"+rel, li_li[pos])
+                        h = render("~/"+rel, li_li[pos])
                     else
                         _ = $.html()
                         _ "<div>"
@@ -149,7 +149,7 @@ module.exports = System.import("coffee/_site/edit/_slide").then (slideout)->
                     html.find('.W').html h
 
                 file_dir = file.split("/")
-                if file_dir[0] == "!"
+                if file_dir[0] == "~"
                     file_pos = EN.indexOf(file_dir[1])+1
                 else
                     file_pos = 0

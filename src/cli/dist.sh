@@ -5,7 +5,6 @@ source $(dirname "$0")/_pre.sh
 rm -rf $PREFIX/dist/-S
 rm -rf $PREFIX/dist/-
 rm -rf $PREFIX/src/-/S
-rm -rf $PREFIX/src/-/md/\!/trash
 
 rm $PREFIX/node_modules/8gua-blog.manifest.json
 
