@@ -1,10 +1,10 @@
 module.exports = ({file, editor})->
     System.import(
-        "coffee/_site/edit/link/_box/page"
+        "coffee/_site/edit/menu/_box/page"
     ).then (box)=>
-        box().then (url)->
+        box().then (url, md)->
             editor.load_md(
                 "~/"+url+".md"
-                ''
+                md
             )
         return

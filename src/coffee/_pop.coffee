@@ -10,7 +10,7 @@ module.exports = MAP = {
         ).done (
             (load, mod)=>
                 if file and file.slice(0,2) == "~/"
-                    bar = 'link'
+                    bar = 'menu'
                 else
                     bar = 'blog'
                 load(

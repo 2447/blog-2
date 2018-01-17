@@ -3,11 +3,15 @@ UPLOAD_CN = {
     photo:'图片'
     file:"文件"
 }
+
+
 do ->
     li = []
     for key, value of UPLOAD_CN
         li.push """<i title="上传#{value}" class="fa fa-#{key}"></i>"""
     EDITOR_ADD_BAR = li.join('')
+
+
 EditorAdd = (page, editor)->
     cls_ins = '.medium-insert-buttons'
     cls_ins_ = cls_ins.slice(1)

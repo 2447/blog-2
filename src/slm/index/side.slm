@@ -19,5 +19,7 @@
         }
     .VC1
         .VC
-            h1 %name
-
+          h1 %name
+          .MENU
+            .a
+              .I-loading.PageLoading
