@@ -26,6 +26,6 @@ form
         label for="pageUrl" 页面网址
         .prefix
             | /~
-        input#pageUrl name="url" value="" placeholder=" 页面网址，限英文、数字、减号、斜杠" autocomplete="off"
+        input#pageUrl name="url" value="" placeholder=" 页面网址，限英文、数字、减号、斜杠" autocomplete="off" spellcheck="false"
   footer
     input.btn.ghost type="submit" value="发布"

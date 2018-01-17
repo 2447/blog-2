@@ -15,18 +15,18 @@ a {
     outline: 0;
 }
 
-pre, code {
+pre {
     box-sizing: border-box;
     white-space: pre-wrap;
     word-wrap: break-word;
-    font-weight: normal;
     background: #FFFDE9;
-    color: #070;
     border: 1px dashed #070;
     padding: 16px;
 }
 
 pre, code {
+    color: #070;
+    font-weight: normal;
     font-family: Ubuntu Mono,monospace;
 }
 
