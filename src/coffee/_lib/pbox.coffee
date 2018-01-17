@@ -27,6 +27,7 @@ $.pbox = (html, option={})->
     keyup = 'keyup.box'
     _title = document.title
     rm = ->
+        delete elem[0].rm
         event = jQuery.Event("rm")
         elem.trigger(event)
         # c = option.rm
@@ -35,13 +36,14 @@ $.pbox = (html, option={})->
         #         return
         if not event.isDefaultPrevented()
             _rm()
-
+        return false
 
     _rm = ->
         document.title = _title
         setTimeout ->
+            event = jQuery.Event("rmed")
+            elem.trigger(event)
             elem.remove()
-            elem.trigger('rmed')
             doc.unbind(keyup)
             scrollbar.destroy()
 
@@ -50,7 +52,7 @@ $.pbox = (html, option={})->
 
     elem0 = elem[0]
     elem0._rm = _rm
-    elem.rm = rm
+    elem0.rm = rm
 
     doc.bind(
         keyup

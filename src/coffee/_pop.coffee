@@ -17,7 +17,6 @@ module.exports = MAP = {
                     file
                     (md, file)=>
                         mod(@, md, file, bar)
-                        history.replaceState(null,null, "/edit/"+file)
                         defer.resolve()
                 ).catch defer.reject
         )
@@ -76,7 +75,7 @@ GO.beforeEach (to, from, next)=>
                 setPath
             ).catch(
                 ->
-                    box.rm()
+                    box[0].rm()
             )
         else
             setPath()

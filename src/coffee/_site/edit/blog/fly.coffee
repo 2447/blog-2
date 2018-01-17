@@ -37,11 +37,10 @@ select_html = (file, callback)->
 _select = (dir, name)->
     return """<div class=li><b class="v" data-v="#{$.escape dir}">#{$.escape name}</b><i class="I I-edit IBtn"></i></div>"""
 
-
 module.exports = System.import("coffee/_site/edit/_slide").then (slideout)->
-    html = $ require('./fly.slm')
-    input = html.find('input.select')
     slideout (resolve, {file, editor, h1, box})->
+        html = $ require('./fly.slm')
+        input = html.find('input.select')
         select_html file, (select, val, text)->
             if val == DRAFT_KEY
                 text = text + DRAFT_ICO
@@ -101,7 +100,7 @@ module.exports = System.import("coffee/_site/edit/_slide").then (slideout)->
                             editor.getContent()
                             opt
                         ).done (url)->
-                            box._rm()
+                            box[0]._rm()
                             GO.push "-/"+url
                 )
             resolve html

@@ -1,12 +1,3 @@
-# /* .a */
-# /*     a href="/" 注册登录 */
-# .a
-#     a href="/about" 关于作者
-# .a
-#     a href="/link" 友情链接
-# .a
-#     a href="/help" 站点说明
-
 module.exports = ->
     html = $ require('slm/index/side').render(SITE)
     slide = require('coffee/_lib/slideout')(

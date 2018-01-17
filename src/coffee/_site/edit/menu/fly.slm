@@ -1,0 +1,31 @@
+form
+  scss:
+    @import 'coffee/_site/edit/scss/fly';
+    .slideout-menu{
+      .prefix{
+        position:absolute;
+        margin-left:96px;
+        line-height:68px;
+      }
+    }
+    #pageUrl{
+      text-align:left;
+      padding-left:116px;
+    }
+  nav
+    .P
+      .SELECT
+          label for="indexShow"
+            | 菜单展示
+          select#indexShow name="show"
+              option value="0" 不展示到首页菜单
+              option value="1" 展示到首页菜单
+              option value="-1" 暂存到草稿箱
+    .P.show
+      .INPUT
+        label for="pageUrl" 页面网址
+        .prefix
+            | /~
+        input#pageUrl name="url" value="" placeholder=" 页面网址，限英文、数字、减号、斜杠" autocomplete="off"
+  footer
+    input.btn.ghost type="submit" value="发布"

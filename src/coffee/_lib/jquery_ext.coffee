@@ -211,7 +211,7 @@ String.prototype.render = (dict) ->
 require("./jquery_err")
 
 $.fn.extend {
-    save:(fn, dict)->
+    save:(fn, dict, before_submit)->
         defer = $.Deferred()
         if typeof(fn) == 'string'
             url = fn
@@ -220,18 +220,23 @@ $.fn.extend {
         form = @
         dict = dict or {}
         submit = ->
-            $.extend(dict, form.dict())
-            fn(dict).then(
-                ->
-                    $.err form, {}
-                    defer.resolve(dict, ...arguments)
-                (err)->
-                    err = err.responseJSON
-                    if typeof(err) == "string"
-                        $.box.alert """<div style="color:red;font-weight:bold">#{err}</div>"""
-                    else
-                        $.err form, err
-            )
+            go = ->
+                $.extend(dict, form.dict())
+                fn(dict).then(
+                    ->
+                        $.err form, {}
+                        defer.resolve(dict, ...arguments)
+                    (err)->
+                        err = err.responseJSON
+                        if typeof(err) == "string"
+                            $.box.alert """<div style="color:red;font-weight:bold">#{err}</div>"""
+                        else
+                            $.err form, err
+                )
+            if before_submit
+                before_submit().then go
+            else
+                go()
             false
         @submit submit
         setTimeout ->

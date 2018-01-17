@@ -1,4 +1,4 @@
-EN = "draft".split(' ')
+EN = "$".split(' ')
 EN_LEN = EN.length
 OPEN = 'open'
 NOW = 'now'
@@ -23,16 +23,16 @@ module.exports = System.import("coffee/_site/edit/_slide").then (slideout)->
                 me = $ @
                 li = me.parents('li')
                 filepath = li[0].title
-                if filepath == file
-                    System.import(
-                        "./add.coffee"
-                    ).then (mod)->
-                        mod(option)
                 $.box.confirm(
                     """<h1 class=TC><p><a title="#{filepath}" href="/edit/#{filepath}">#{li.find('h2').html()}</a></p><p>确认删除？</p></h1>"""
                     {
                         okBtn:"删除"
                         ok:  ->
+                            if filepath == file
+                                System.import(
+                                    "./add.coffee"
+                                ).then (mod)->
+                                    mod(option)
                             PP.postJSON1(
                                 "post/rm/"+filepath
                                 ->
@@ -43,17 +43,7 @@ module.exports = System.import("coffee/_site/edit/_slide").then (slideout)->
                     }
                 )
                 return
-            h.find('.I-edit').click ->
-                p = @parentNode.parentNode.title
-                System.import("coffee/_site/edit/_load").then(
-                    (load)->
-                        load(
-                            p
-                            (md)->
-                                editor.load_md p, md
-                                option.slide.close()
-                        )
-                )
+            require("../post_a_edit")(editor,option,h)
             return h
 
         PP.json(
@@ -71,7 +61,9 @@ module.exports = System.import("coffee/_site/edit/_slide").then (slideout)->
                     rel = @rel
                     pos = EN.indexOf(rel)
                     if pos + 1
-                        h = render("~/"+rel, li_li[pos])
+                        h = render(rel, li_li[pos])
+                        h.find('h2').click ->
+                            $(@).closest('li').find('.I-edit').click()
                     else
                         _ = $.html()
                         _ "<div>"
@@ -149,8 +141,8 @@ module.exports = System.import("coffee/_site/edit/_slide").then (slideout)->
                     html.find('.W').html h
 
                 file_dir = file.split("/")
-                if file_dir[0] == "~"
-                    file_pos = EN.indexOf(file_dir[1])+1
+                if file_dir[0] == "$"
+                    file_pos = 1
                 else
                     file_pos = 0
                 tab[file_pos].click()

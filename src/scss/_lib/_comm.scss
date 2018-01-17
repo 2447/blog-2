@@ -5,6 +5,24 @@ $SELECT_LEFT: 83px;
     background: #ffc;
 }
 
+.SELECT, .INPUT {
+    input {
+        padding: 18px 18px 18px 83px;
+        border: 0;
+        font-weight: 100;
+        text-align: center;
+        cursor: pointer;
+        font-family: Lato,Noto Sans SC Sliced, I, sans-serif;
+        user-select: none;
+        border-bottom: 1px dashed #ddd;
+    }
+
+    input:focus, input:hover, input:active {
+        outline: 0;
+        background: #fff;
+    }
+}
+
 .SELECT {
     position: relative;
 
@@ -13,19 +31,6 @@ $SELECT_LEFT: 83px;
         margin: 32px auto;
         width: 32px;
         height: 32px;
-    }
-
-    input, input:focus, input:hover, input:active {
-        padding: 18px 18px 18px 83px;
-        border: 0;
-        outline: 0;
-        background: #fff;
-        font-weight: 100;
-        border-bottom: 1px dashed #ddd;
-        text-align: center;
-        cursor: pointer;
-        font-family: Lato,Noto Sans SC Sliced, I, sans-serif;
-        user-select: none;
     }
 
     select {

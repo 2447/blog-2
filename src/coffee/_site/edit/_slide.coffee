@@ -5,15 +5,18 @@ module.exports = (func)=>
     (option)->
         {ico} = option
         btn = $ @
-        pbox = btn.closest('.Pbox')
-        close_btn = pbox.find('.PboxIco.I-close')
-        option.box = pbox[0]
+        box = option.box
+        close_btn = box.find('.PboxIco.I-close')
         if slide
             is_me = (slide.id == ico)
             slide.close()
             if is_me
                 return
-
+        box.on(
+            'rmed'
+            ->
+                slide = undefined
+        )
         ibtn = $(@parentNode).find('.I').removeClass('now').one('click.slide', ->
             if slide
                 if not $(@).hasClass "I-"+slide.id
@@ -34,7 +37,7 @@ module.exports = (func)=>
             (html)->
                 if html
                     option.slide = slideout(
-                        pbox
+                        box
                         html
                         'Right'
                         ->

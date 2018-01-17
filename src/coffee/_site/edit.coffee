@@ -390,16 +390,6 @@ module.exports =  (box, md, file, bar)->
             return
 
     )
-    # editor.getExtensionByName('placeholder').updatePlaceholder = (el, dontShow)->
-    #     contents = $(el).children().not('.medium-insert-buttons').contents()
-    #     if not dontShow and contents.length == 1 and contents[0].nodeName.toLowerCase() == 'br'
-    #         console.log @showPlaceholder
-    #         console.log @base._hideInsertButtons
-    #         @showPlaceholder(el)
-    #         @base._hideInsertButtons($(el))
-    #     else
-    #         console.log @hidePlaceholder
-    #         @hidePlaceholder(el)
 
 
     $.topfix(
@@ -417,6 +407,7 @@ module.exports =  (box, md, file, bar)->
                 mod.call(
                     @
                     {
+                        box
                         file
                         h1
                         editor

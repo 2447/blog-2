@@ -1,13 +1,17 @@
 .EditDraft
   scss:
     @import 'coffee/_site/edit/scss/post.scss';
-    .UL-\${
+    .UL-0{
+        li{cursor:move;}
+    }
+    .UL-1,.UL-2{
         h2{cursor:pointer;}
         h2:hover{
             color:#f40;
         }
     }
   .tab
-      a 已发布
-      a rel="$" 草稿箱
+      a 已展示
+      a 未展示
+      a 草稿箱
   .W

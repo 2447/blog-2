@@ -108,8 +108,6 @@ do =>
             path
             component: make(file)
         }
-            # else
-            #     console.log path, file
 
 router = new VueRouter({
     mode: 'history'

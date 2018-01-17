@@ -24,18 +24,4 @@ module.exports = (HOST_URL, callback)->
 
 
 
-# do ->
-#     for i in "getJSON1 postJSON1 get1 post1 getJSON get post postJSON".split(' ')
-#         module.exports[i] = bind(i)
-
-
-# $.get({
-#     url: "https://8gua.men:19840/-/3333/3.md",
-#     crossDomain: true,
-#     data:"hello",
-#     processData:true,
-#     contentType: "text/plain",
-#     method: "GET",
-#     success:console.log
-# })
 
