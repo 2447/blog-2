@@ -1,11 +1,6 @@
 .VC2
     scss:
         .Page > .slideout-menu{
-            h1{
-                font-family:Rajdhani,H;
-                margin:0 auto 64px;
-                font-size:28px;
-            }
             .a{
               margin-top: 32px;
               a{
@@ -15,6 +10,11 @@
                     color:#f40;
                 }
               }
+            }
+            h1{
+                font-family:Rajdhani,H;
+                margin:0 auto 64px;
+                font-size:28px;
             }
         }
     .VC1
