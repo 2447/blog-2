@@ -37,13 +37,13 @@ module.exports = System.import("coffee/_site/edit/_slide").then (slideout)->
             ).then (o, [url])->
                 box[0]._rm()
                 if not url.startsWith("$/")
-                    url = "~"+url
+                    url = "!"+url
                 else
                     url = "-/"+url
                 GO.push url
             resolve html
 
-        if file.startsWith("~/")
+        if file.startsWith("!/")
             PP.get( "menu/show/"+file.slice(2)).then (s)->
                 render s, file.slice(2,-3)
         else
@@ -55,12 +55,12 @@ module.exports = System.import("coffee/_site/edit/_slide").then (slideout)->
         #             file
         #             title
         #             editor.getContent()
-        #             {dir:"~"}
+        #             {dir:"!"}
         #         ).done (url)->
         #             box._rm()
         #             $.box.alert "『#{$.escape(title or '无题')}』保存成功"
         #             if url
         #                 url = file.slice(2,-3)
-        #                 GO.push "/~"+url
+        #                 GO.push "/!"+url
         #             return
         # )

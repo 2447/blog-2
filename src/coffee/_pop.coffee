@@ -9,7 +9,7 @@ module.exports = MAP = {
             System.import('coffee/_site/edit')
         ).done (
             (load, mod)=>
-                if file and file.slice(0,2) == "~/"
+                if file and file.slice(0,2) == "!/"
                     bar = 'menu'
                 else
                     bar = 'blog'
@@ -43,7 +43,7 @@ split_n = require('coffee/_lib/split_n')
 
 GO.beforeEach (to, from, next)=>
     path = to.path
-    if path.slice(0,2) == '/~'
+    if path.slice(0,2) == '/!'
         func = (url)->
             System.import(
                 "coffee/_pop/_md"

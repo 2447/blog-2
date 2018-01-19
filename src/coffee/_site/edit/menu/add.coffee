@@ -7,7 +7,7 @@ module.exports = System.import("../blog/add").then (add)->
 #     ).then (box)=>
 #         box().then (url, md)->
 #             editor.load_md(
-#                 "~/"+url+".md"
+#                 "!/"+url+".md"
 #                 md
 #             )
 #         return

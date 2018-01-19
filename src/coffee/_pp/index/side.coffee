@@ -20,5 +20,5 @@ module.exports = (html, slide)->
         )
         # System.import("coffee/_site/edit/menu/_box/page").then (box)->
         #     box().done (url)->
-        #         GO.push "/edit/~/#{url}.md"
+        #         GO.push "/edit/!/#{url}.md"
         return

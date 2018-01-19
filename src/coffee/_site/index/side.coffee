@@ -15,7 +15,7 @@ module.exports = ->
                     [name, link]  = i.slice(2).trim().split("](")
                     link = link.slice(0,-4)
                     name = name.slice(1) or link
-                    _ """<div class="a"><a href="/~#{link}">#{$.escape name}</a></div>"""
+                    _ """<div class="a"><a href="/!#{link}">#{$.escape name}</a></div>"""
             _ "</div>"
             ali = $ _.html()
             if PP.open

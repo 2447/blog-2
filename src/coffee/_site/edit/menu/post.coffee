@@ -67,7 +67,7 @@ module.exports = System.import("coffee/_site/edit/_slide").then (slideout)->
                 t = []
                 if li[1]
                     for i, pos in li[1].split("\n")
-                        t.push [i,"~/"+i.slice(0,-3)]
+                        t.push [i,"!/"+i.slice(0,-3)]
                 else
                     li[1] = []
 
@@ -85,7 +85,7 @@ module.exports = System.import("coffee/_site/edit/_slide").then (slideout)->
                             if pos == 2
                                 sign = "$"
                             else
-                                sign = "~"
+                                sign = "!"
                             break
                     h = render(sign, li[pos], pos)
                     html.find('.W').html h
@@ -102,7 +102,7 @@ module.exports = System.import("coffee/_site/edit/_slide").then (slideout)->
                                          r.push i.title.slice(2)
                                      PP.postJSON(
                                          "post/sort/li"
-                                         ["~"].concat r
+                                         ["!"].concat r
                                      )
                                      return
                              }
@@ -204,7 +204,7 @@ module.exports = System.import("coffee/_site/edit/_slide").then (slideout)->
         #             html.find('.W').html h
 
         #         file_dir = file.split("/")
-        #         if file_dir[0] == "~"
+        #         if file_dir[0] == "!"
         #             file_pos = EN.indexOf(file_dir[1])+1
         #         else
         #             file_pos = 0
