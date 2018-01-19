@@ -1,6 +1,4 @@
 ReconnectingWebSocket = require 'reconnecting-websocket'
-
-
 HOST = "8gua.win"
 PORT = 19841
 F = "/-/"
@@ -8,6 +6,13 @@ window.PP = {
     URL : "https://#{HOST}:#{PORT-1}/"
     F
 }
+ACTION = {
+    host : (has)->
+        if has - 0
+            PP.F = PP.URL+F.slice(1)
+            PP.open = 1
+}
+
 
 
 module.exports = (callback)->
@@ -35,6 +40,11 @@ module.exports = (callback)->
         switch action
             when "^"
                 $.toast msg
+            when ">"
+                pos = data.indexOf(' ')
+                ACTION[data.slice(1, pos)]?(
+                    data.slice(pos+1)
+                )
 
     ws.onclose = ->
         if PP.open
@@ -45,8 +55,6 @@ module.exports = (callback)->
         _callback()
 
     ws.onopen = ->
-        PP.open = 1
-        PP.F = PP.URL+F.slice(1)
         System.import(
             'coffee/_lib/8gua/ajax/ok.coffee'
         ).then (mod)->
