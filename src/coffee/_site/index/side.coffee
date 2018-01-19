@@ -6,7 +6,7 @@ module.exports = ->
         "Right"
     )
     PP.get(
-        "-/md/~/SUMMARY.md"
+        "-/md/!/SUMMARY.md"
         (txt)->
             _ = $.html()
             _ "<div>"

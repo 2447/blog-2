@@ -50,7 +50,7 @@ GO.beforeEach (to, from, next)=>
             ).then (render)=>
                 render.call(
                     @
-                    "~/"+path.slice(2)
+                    "!/"+path.slice(2)
                 )
             return
     else
