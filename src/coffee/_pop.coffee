@@ -66,6 +66,7 @@ GO.beforeEach (to, from, next)=>
                 history.pushState(null, null, path)
 
         box.on 'rm', ->
+            $("html").removeClass('slideoutOpen')
             GO.reload()
             return
 
