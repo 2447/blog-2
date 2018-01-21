@@ -1,5 +1,5 @@
 p 撰写服务未启动
 p
     | 如未安装，请参阅&nbsp;
-    a href="/help" 帮助文档
+    a href="/!help" 帮助文档
 p 如已安装，请执行 8gua

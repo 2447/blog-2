@@ -25,7 +25,7 @@ form#PBY v-on:submit.prevent="submit"
             h2 8GUA.BLOG
             p 您好！第一次使用？请先阅读
             p
-                a.btn.ghost href="/help" 帮助文档
+                a.btn.ghost href="/!help" 帮助文档
     .Form.Pbk
         .P
             h1

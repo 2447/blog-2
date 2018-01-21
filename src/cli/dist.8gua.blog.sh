@@ -30,7 +30,7 @@ sync() {
     git pull origin $branch && git push origin $branch;
 }
 
-sync && ssh hk "cd 8gua.blog;git pull" &
-git push github &
-git push bitbucket &
+sync && ssh hk "cd 8gua.blog;git pull"
+git push github
+git push bitbucket
 
