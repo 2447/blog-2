@@ -1,4 +1,5 @@
 marked = require('coffee/_lib/marked')
+
 module.exports = (md)->
     md = (md or '').split("\n")
     title = ""
