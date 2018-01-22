@@ -201,7 +201,6 @@ module.exports =  (box, md, file, bar)->
     editor = new MediumEditor(
         textarea
         {
-            autoLink: true
             elementsContainer:editor_elem[0]
             spellcheck:false
             targetBlank:true

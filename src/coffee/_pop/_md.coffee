@@ -16,8 +16,7 @@ module.exports = (url, prefix)->
             txt = $ """<div class=TXT><h1>#{$.escape(title or "无题")}</h1></div>"""
             @find('.PboxMain').replaceWith txt
 
-            {F} = PP
-            html = html.replaceAll(' src="'+F, ' src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="'+F)
+            html = html.replaceAll('<img src="', '<img src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="')
             html = $(html).toArray()
 
             min_height = 0

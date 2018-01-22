@@ -11,7 +11,7 @@ require 'coffee/_lib/box/init'
 require 'coffee/_lib/pbox'
 require 'coffee/_lib/toast'
 require 'coffee/_site/route'
-require('coffee/_lib/analytics') 'UA-110552337-1'
+require('coffee/_lib/analytics')
 require 'coffee/_lib/onload'
 require 'scss/_init'
 
