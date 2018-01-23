@@ -141,6 +141,7 @@ scrollHash = (hash)->
 window.GO = router
 if history.pushState
     $('body').on 'click', 'a', (e)->
+        @blur()
         url = @pathname
         if @hostname != location.hostname or url.slice(0,5) == "/-/S/"
             if not @target
