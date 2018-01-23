@@ -41,8 +41,16 @@ module.exports = MAP = {
 
 split_n = require('coffee/_lib/split_n')
 
+Z_INDEX = 100
+
 GO.beforeEach (to, from, next)=>
     path = to.path
+    for i in $(".Pbox")
+        if path == i.dataset.path
+            box = $(i)
+            box.css "z-index", ++Z_INDEX
+            return
+
     if path.slice(0,2) == '/!'
         func = (url)->
             System.import(
@@ -60,15 +68,41 @@ GO.beforeEach (to, from, next)=>
         box = $.pbox(
             """<div class="VC2"><div class="VC1"><div class="TC"><div class="PageLoading I-loading"></div></div></div></div>"""
         )
+        box.attr('data-path', path)
+
         _path = location.pathname
+        if _path == path
+            _path = '/'
+
         setPath =->
             if location.pathname == _path and _path != path
                 history.pushState(null, null, path)
 
+
+        popstate = "popstate.pbox"+(++$.guid)
+        win = $(window).bind(
+            popstate
+            ->
+                lpath = location.pathname
+                box_rm = ->
+                    box[0]._rm()
+                    return
+                sign = lpath.slice(1).split("/")[0]
+                if not (sign.charAt(0) == "!" or sign of MAP) or (location.pathname == _path and _path != path)
+                    box_rm()
+                return
+        )
+
         box.on 'rm', ->
-            $("html").removeClass('slideoutOpen')
+            lpath = location.pathname
+            if lpath == path # 没后退
+                lpath = _path
+                history.pushState(null, null,lpath)
+
             GO.reload()
             return
+        box.on 'rmed', ->
+            win.unbind popstate
 
         r = func.call(box, suffix)
         if r and r.catch

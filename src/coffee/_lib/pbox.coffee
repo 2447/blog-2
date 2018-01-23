@@ -1,8 +1,14 @@
 ing = undefined
 
+
+
+HTML = $('HTML')[0]
+
 $.pbox = (html, option={})->
+    HTML_CLS = HTML.className
     if ing
         return
+
     ing = 1
     doc = $(document)
     option = {
@@ -39,6 +45,7 @@ $.pbox = (html, option={})->
         return false
 
     _rm = ->
+        HTML.className = HTML_CLS
         document.title = _title
         setTimeout ->
             event = jQuery.Event("rmed")
