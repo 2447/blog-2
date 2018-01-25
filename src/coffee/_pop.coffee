@@ -9,7 +9,7 @@ module.exports = MAP = {
             System.import('coffee/_site/edit')
         ).done (
             (load, mod)=>
-                if file and file.slice(0,2) == "!/"
+                if file and file.charAt(0) == "!"
                     bar = 'menu'
                 else
                     bar = 'blog'
@@ -58,7 +58,7 @@ GO.beforeEach (to, from, next)=>
             ).then (render)=>
                 render.call(
                     @
-                    "!/"+path.slice(2)
+                    "!"+path.slice(2)
                 )
             return
     else

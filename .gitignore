@@ -1,8 +1,8 @@
+src/-/
 src/coffee/plugin/
 *.tmp
 .DS_Store
-src/-/md/
-src/-/S/
+src/md/
 *.pyc
 file/font/*.toml
 __pycache__

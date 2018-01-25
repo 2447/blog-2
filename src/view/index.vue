@@ -92,7 +92,7 @@ header{
 <script lang="coffee">
 SUMMARY = []
 export default {
-    get : "md/SUMMARY.md"
+    get : "SUMMARY.md"
     data:(summary)->
         if not window.SITE
             GO.ln ' init'

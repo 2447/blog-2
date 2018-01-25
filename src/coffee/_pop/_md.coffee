@@ -2,7 +2,7 @@
 win = $ window
 module.exports = (url, prefix)->
     PP.get(
-        "-/md/"+url+".md"
+        "-/"+url+".md"
         (md)=>
             [title, html] = require('coffee/_lib/load_md')(md)
             if PP.open
