@@ -13,10 +13,11 @@ cd $PAGE
 rm -rf ./-S/*.* ./-S/dll
 cp -R $PREFIX/dist/* $PAGE
 
-
 cd $PAGE
+
 rm -rf index.html
 mv ./-S/index.html .
+
 rm -rf 404.html
 ln -s index.html 404.html
 #ln -s ./-S/index.html .

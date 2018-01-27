@@ -7,20 +7,6 @@ path = require 'path'
 ROOT = path.resolve(path.join(__dirname,"../.."))
 
 
-HTML_WEBPACK_PLUGIN_CONFIG = {
-    template: './slm/_init.slm'
-    inject: 'body'
-    filename:'index.html'
-    chunks:['site']
-    # chunks:'C2 site'.split(' ')
-    minify:{
-        removeScriptTypeAttributes:true
-        removeAttributeQuotes:true
-        removeComments:true
-        collapseWhitespace:true
-    }
-}
-
 CopyWebpackPlugin = require('copy-webpack-plugin')
 AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin')
 
@@ -29,20 +15,63 @@ module.exports = exports = {
     module:MODULE.module
     plugins: [
         new webpack.HashedModuleIdsPlugin()
-        new HtmlWebpackPlugin(HTML_WEBPACK_PLUGIN_CONFIG)
         MODULE.extractScss
         require('./webpack.define.coffee')
         new webpack.DllReferencePlugin({
             context: ROOT
             manifest: path.join(ROOT,'node_modules/8gua-blog.manifest.json')
         })
-        new AddAssetHtmlPlugin({
-            filepath: path.join(ROOT,'dist/-S/dll/init*.js')
-            files: ['index.html']
-            includeSourcemap:false
-        })
     ]
 }
+
+
+HTML_WEBPACK_PLUGIN_CONFIG = [
+    [
+
+        '_seo'
+        "seo"
+        ['seo']
+    ],
+    [
+        '_init'
+        "index"
+        ['site']
+    ]
+]
+
+
+do ->
+    files = []
+
+    for [template, filename, chunks] in HTML_WEBPACK_PLUGIN_CONFIG
+        filename = filename+".html"
+        exports.plugins.push new HtmlWebpackPlugin(
+            {
+                template: './slm/'+template+'.slm'
+                inject: 'body'
+                filename
+                chunks
+                # chunks:'C2 site'.split(' ')
+                minify:{
+                    removeScriptTypeAttributes:true
+                    removeAttributeQuotes:true
+                    removeComments:true
+                    collapseWhitespace:true
+                }
+            }
+        )
+        files.push(filename)
+
+
+    exports.plugins.push(
+        new AddAssetHtmlPlugin({
+            filepath: path.join(ROOT,'dist/-S/dll/init*.js')
+            files
+            includeSourcemap:false
+        })
+    )
+
+
 if isProduction
     # exports.plugins.push new webpack.DefinePlugin({
     #     'process.env': {

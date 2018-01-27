@@ -27,6 +27,9 @@ else
 exports = {
     entry:
         site : ['./coffee/_init.coffee']
+        seo : [
+            './coffee/_seo.coffee',
+        ]
     output: output
     externals: require('./webpack.externals.coffee')
     resolve: require('./webpack.resolve.coffee')
