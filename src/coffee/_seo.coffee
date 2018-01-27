@@ -27,16 +27,19 @@ $ ->
                     exit()
             return
     )
-    if PP.open
-        require(
-            'coffee/_lib/8gua/ws'
-        ) ->
+    require(
+        'coffee/_lib/8gua/ws'
+    ) ->
+        if PP.open
             System.import(
                 "coffee/_pp/post/edit"
             ).then(
                 (mod)=>
+                    url = URL.slice(1)
+                    if url.slice(0,2) == "-/"
+                        url = url.slice(2)
                     mod(
-                        URL
+                        url
                         box
                         exit
                     )
