@@ -8,7 +8,7 @@ history.pushState(
 $ ->
     exit = ->
         location.href="/"
-    close = """<i class="PboxIco I I-close"></i>"""
+    close = $ """<i class="PboxIco I I-close"></i>"""
 
     $(".Pbox:first").append close
 
