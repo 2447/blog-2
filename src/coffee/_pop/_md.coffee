@@ -6,13 +6,17 @@ module.exports = (url, prefix)->
         (md)=>
             [title, html] = require('coffee/_lib/load_md')(md)
             if PP.open
-                edit = $(
-                    """<a href="/edit/#{url}.md" class="I I-edit PboxIco" style="font-size:24px;bottom:11px;right:8px;top:auto;"></a>"""
-                ).click =>
-                    @[0]._rm()
-                    return
-                @append edit
-
+                System.import(
+                    "coffee/_pp/post/edit"
+                ).then(
+                    (mod)=>
+                        mod(
+                            url
+                            @
+                            =>
+                                @[0]._rm()
+                        )
+                )
             txt = $ """<div class=TXT><h1>#{$.escape(title or "无题")}</h1></div>"""
             @find('.PboxMain').replaceWith txt
 
