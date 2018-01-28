@@ -7,5 +7,5 @@ html
     link rel="canonical" href="%canonical"
   body
     noscript
-      h1
+      .TC
         a href="/-/sitemap.html" 索引
