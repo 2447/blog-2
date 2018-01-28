@@ -4,5 +4,4 @@ module.exports = (url, box, callback)->
     ).click =>
         callback()
         return
-    console.log box
     box.append edit

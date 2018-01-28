@@ -138,7 +138,9 @@ scrollHash = (hash)->
             90
         )
 
+
 window.GO = router
+
 if history.pushState
     $('body').on 'click', 'a', (e)->
         @blur()
@@ -184,3 +186,5 @@ VueRouter.prototype.reload = ->
     history.updateRoute {matched:[], path:""}
     @replace current
     return
+
+

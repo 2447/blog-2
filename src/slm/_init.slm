@@ -4,11 +4,12 @@ html
     meta charset='utf-8'
     title
     meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
-
   body
+    noscript
+      h1
+        a href="/-/sitemap.html" 索引
     #Page
         .Page
             router-view
                 slm:
                     util/loading
-

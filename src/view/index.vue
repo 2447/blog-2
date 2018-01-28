@@ -60,22 +60,19 @@ header{
 }
 }
 </style>
-
-
 <template lang="slm">
 #PBY
     .Ptop
         .L
             a.logo href="/"
                 i class="I I-logo"
-                b class="h1" {{hostname}}
+                b class="h1"
         .R
             i v-on:click="side" class="I I-menu IBtn on"
     .Pbody
         header
             .siteH2
-                h1 {{name}}
-                h2 v-if="slogan" {{slogan}}
+                h1
         .bar
             .R.split
                 a.I.I-edit.IBtn href="/edit"
@@ -122,16 +119,21 @@ export default {
         if count
             SUMMARY[count-1].push li
 #        SUMMARY = _.html()
-        {
-            hostname:location.hostname.toUpperCase()
-            slogan:SITE.slogan
-            name:SITE.name
-        }
+        return {}
     func:
         side : ->
             System.import('coffee/_site/index/side').then (m)=>m()
     mounted:->
-        page = $("#Page")
+        page = $(@$root.$el)
+        page.find('.Ptop a.logo .h1').text SITE.host
+        site_h2 = page.find('.Pbody header .siteH2')
+        site_h2.find('h1').text SITE.name
+        if SITE.slogan
+            site_h2.append("""<h2>#{$.escape SITE.slogan}</h2>""")
+
+#            slogan:SITE.slogan
+#            name:SITE.name
+#                h2 v-if="slogan" {{slogan}}
 
         _ = $.html()
         section = "section"

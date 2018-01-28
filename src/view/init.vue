@@ -36,6 +36,11 @@ form#PBY v-on:submit.prevent="submit"
             h1
                 | 标语
             input v-model.trim="slogan" autocomplete="off" placeholder="一句话简介 …"
+        .P
+            h1
+                | 域名
+                .tip 必填
+            input  v-model.trim="host" autocomplete="off" placeholder="域名，用于生成搜索引擎优化的链接"
         input.btn type="submit" value="生成站点"
 
     slm:
@@ -48,8 +53,8 @@ export default {
     func:
         submit : ->
             SITE = window.SITE or {}
-            {name, slogan} = data = @$data
-            if name == SITE.name and slogan == SITE.slogan
+            {name, slogan, host} = data = @$data
+            if name == SITE.name and slogan == SITE.slogan and host == SITE.host
                 GO.push '/'
                 return
             key = '/init'
@@ -69,7 +74,9 @@ export default {
                     ok : ->
                         location.href="/"
                 }
-
-    data:'name slogan'
+    mounted:->
+        @$data.host = @$data.host or location.host.toUpperCase()
+        return
+    data:'name slogan host'
 }
 </script>

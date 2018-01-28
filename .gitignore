@@ -1,3 +1,6 @@
+sitemap.html
+sitemap.xml
+robots.txt
 src/-/
 src/coffee/plugin/
 *.tmp

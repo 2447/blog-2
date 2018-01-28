@@ -6,3 +6,6 @@ html
     meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
     link rel="canonical" href="%canonical"
   body
+    noscript
+      h1
+        a href="/-/sitemap.html" 索引
