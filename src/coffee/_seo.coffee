@@ -1,7 +1,7 @@
 require 'scss/_init'
 window.$ = window.jQuery = require "jquery"
 
-URL = location.pathname.slice(0,-5)
+URL = location.pathname.slice(0,-4)
 history.pushState(
     null
     null
