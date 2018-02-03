@@ -36,15 +36,19 @@ module.exports = (url, prefix)->
             scroll = ->
                 count = html.length
                 top = @scrollTop
+
                 while count--
-                    if @scrollHeight - top > min_height
+                    if txt.height() - top > min_height
+                        macs.update()
                         return
                     elem = html.shift()
                     for i in $(elem).find('img')
                         i.src = i.dataset.src
                         delete i.dataset.src
                     txt.append(elem)
+                macs.update()
                 unbind()
+                return
 
             unbind = ->
                 macs.unbind scroll_name
@@ -54,15 +58,16 @@ module.exports = (url, prefix)->
             win.bind(
                 resize_name
                 ->
-                    scroll.apply macs[0]
+                    scroll.apply macs
                     update_min_height()
             )
 
             @on('rm', unbind)
 
-            macs = @find('.macS').bind(scroll_name, scroll)
+            macs = @find('.macS')[0].scrollbar
+            macs.bind(scroll_name, scroll)
 
-            scroll.apply macs[0]
+            scroll.apply macs
 
             $.doc_title (prefix or '') + @find('h1:first').text()
     )

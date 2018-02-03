@@ -96,7 +96,7 @@
     }
 }
 
-.Pbox .macS .TXT {
+.Pbox .macS > .TXT, .Pbox .macS > .scroll-content > .TXT {
     margin: 22px 22px 256px;
 
     & > * {
@@ -112,7 +112,7 @@
 }
 
 @media (max-width: 602px) {
-    .Pbox .macS .TXT {
+    .Pbox .macS > .TXT, .Pbox .macS > .scroll-content > .TXT {
         font-size: 16px;
     }
 }

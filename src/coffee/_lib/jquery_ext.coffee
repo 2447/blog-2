@@ -67,6 +67,7 @@ $.scrollbar = (elem, callback)->
         update:f
         destroy:f
     }
+    $elem = $ elem
     if not ($.isMobile or isMac)
 
         System.import('smooth-scrollbar').then (Scrollbar)->
@@ -76,6 +77,33 @@ $.scrollbar = (elem, callback)->
                 scrollbar.update()
             s.destroy = =>
                 scrollbar.destroy()
+
+            _func = {}
+            s.bind = (name, action)=>
+                _func[name] = action
+                scrollbar.addListener(
+                    (status)->
+                        action.apply {
+                            scrollTop:s.scrollTop
+                        }
+                )
+            s.unbind = (name)=>
+                scrollbar.removeListener(_func[name])
+                delete _func[name]
+            Object.defineProperty(s, 'scrollTop', {
+                get : -> scrollbar.scrollTop
+            })
+    else
+        s.bind = (name, action)=>
+            $elem.bind(name, action)
+
+        s.unbind = (name, action)=>
+            $elem.unbind(name)
+
+        Object.defineProperty(s, 'scrollTop', {
+            get : -> elem.scrollTop
+        })
+
     return s
 
 $.ajaxSetup({
