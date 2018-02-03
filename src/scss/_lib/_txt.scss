@@ -56,6 +56,12 @@
         }
     }
 
+    ol > li, ul > li {
+        & > ol, & > ul {
+            margin-bottom: 16px;
+        }
+    }
+
     p {
         & > img {
             max-width: 100%;
@@ -90,7 +96,7 @@
     }
 }
 
-.Pbox .macS > .TXT {
+.Pbox .macS .TXT {
     margin: 22px 22px 256px;
 
     & > * {
@@ -106,7 +112,7 @@
 }
 
 @media (max-width: 602px) {
-    .Pbox .macS > .TXT {
+    .Pbox .macS .TXT {
         font-size: 16px;
     }
 }

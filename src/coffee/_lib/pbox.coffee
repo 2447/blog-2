@@ -26,9 +26,9 @@ $.pbox = (html, option={})->
     elem.find('.'+className).html html
     $('body').append(elem)
 
-    scrollbar = $.scrollbar(
-        elem.find('.macS')[0]
-    )
+    # scrollbar = $.scrollbar(
+    #     elem.find('.macS')[0]
+    # )
 
     keyup = 'keyup.box'
     _title = document.title
@@ -52,7 +52,7 @@ $.pbox = (html, option={})->
             elem.trigger(event)
             elem.remove()
             doc.unbind(keyup)
-            scrollbar.destroy()
+            # scrollbar.destroy()
 
 
     rm_btn = elem.find('.I-'+option.ico).click rm
